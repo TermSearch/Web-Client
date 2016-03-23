@@ -9,23 +9,23 @@ export function setQuery(query = '') {
   };
 }
 
-export function setFriends(friends = []) {
+export function setDictentries(dictentries = []) {
   return {
-    type: types.SET_FRIENDS,
-    friends,
+    type: types.SET_DICTENTRIES,
+    dictentries,
   };
 }
 
-export function fetchFriends() {
+export function fetchDictentries() {
   return (dispatch, getState) => {
     const { query } = getState();
 
     browserHistory.push({
-      query: { field: 'Recht2', term: query || undefined },
+      query: { term: query || undefined },
     });
 
-    search(query).then(friends => {
-      dispatch(setFriends(friends));
+    search(query).then(dictentries => {
+      dispatch(setDictentries(dictentries));
     });
   };
 }

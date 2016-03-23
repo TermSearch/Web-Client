@@ -2,10 +2,10 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   query: '',
-  friends: [],
+  dictentries: [],
 };
 
-export default function friendListReducer(state = initialState, action) {
+export default function dictEntryListReducer(state = initialState, action) {
   switch (action.type) {
 
     case types.SET_QUERY:
@@ -14,10 +14,10 @@ export default function friendListReducer(state = initialState, action) {
         query: action.query,
       };
 
-    case types.SET_FRIENDS:
+    case types.SET_DICTENTRIES:
       return {
         ...state,
-        friends: action.friends,
+        dictentries: action.dictentries,
       };
 
     default:

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setQuery, fetchFriends } from '../actions';
+import { setQuery, fetchDictentries } from '../actions';
 
 import SearchInput from '../components/SearchInput';
 import DictentryList from '../components/DictentryList';
@@ -10,15 +10,15 @@ const propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   query: PropTypes.string,
-  friends: PropTypes.array,
+  dictentries: PropTypes.array,
 };
 
 const defaultProps = {
   query: '',
-  friends: [],
+  dictentries: [],
 };
 
-class FriendSearchView extends Component {
+class TermSearchView extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleSearch = this.handleSearch.bind(this);
@@ -26,7 +26,6 @@ class FriendSearchView extends Component {
 
   // fetch on page load
   componentDidMount() {
-    console.log(this.props.location);
     this.fetchFromLocation(this.props.location);
   }
 
@@ -37,37 +36,36 @@ class FriendSearchView extends Component {
     }
   }
 
-  fetchFromLocation({ query: { term, field } }) {
-    console.log(field);
+  fetchFromLocation({ query: { term } }) {
     this.handleSearch(term);
   }
 
   handleSearch(value) {
     const { dispatch } = this.props;
     dispatch(setQuery(value));
-    dispatch(fetchFriends());
+    dispatch(fetchDictentries());
   }
 
   render() {
-    const { query, friends } = this.props;
+    const { query, dictentries } = this.props;
 
     return (
       <div className="app">
         <SearchInput
           value={query}
-          placeholder="Search terms..."
+          placeholder="Vul hier een Duitse term in..."
           handleSearch={this.handleSearch}
         />
-        <DictentryList dictentries={friends} />
+      <DictentryList dictentries={dictentries} />
       </div>
     );
   }
 }
 
-FriendSearchView.propTypes = propTypes;
-FriendSearchView.defaultProps = defaultProps;
+TermSearchView.propTypes = propTypes;
+TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ query, friends }) => ({
+export default connect(({ query, dictentries }) => ({
   query,
-  friends,
-}))(FriendSearchView);
+  dictentries,
+}))(TermSearchView);
