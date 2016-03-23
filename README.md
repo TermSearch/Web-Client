@@ -1,7 +1,5 @@
-# Imperative approach:
-Currently one of the most straightforward solutions. Logic for dispatching actions and reading router state is all contained in react components. The most "imperative" of the examples.
+# TermSearch Web Client
 
-Refer to \*/index.js and \*/containers/FriendSearchView.js for the difference in approach between this example, the [better-observable-solution](../better-observable-solution), and the [part-observable-solution](../part-observable-solution).
 
 ## To run
 ```sh

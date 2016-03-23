@@ -23,8 +23,7 @@ export default function search(query) {
 	//   setTimeout(() => resolve(response.results.dictentries), Math.ceil(Math.random() * 250));
 	// });
   console.log(query);
-  
-	return fetch(`http://localhost:2020/api/dictentries/startsWith?term=${query}&limit=10&skip=0&subjectFieldStr=Recht`,
+  return fetch(`http://localhost:2020/api/dictentries/startsWith?term=${query}&limit=100&skip=0&subjectFieldStr=Recht`,
     { method: 'get' })
   .then(res => res.json())
   .then(json => json.results.dictentries);

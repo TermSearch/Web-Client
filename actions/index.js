@@ -21,7 +21,7 @@ export function fetchFriends() {
     const { query } = getState();
 
     browserHistory.push({
-      query: { q: query || undefined },
+      query: { field: 'Recht2', term: query || undefined },
     });
 
     search(query).then(friends => {

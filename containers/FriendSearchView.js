@@ -26,6 +26,7 @@ class FriendSearchView extends Component {
 
   // fetch on page load
   componentDidMount() {
+    console.log(this.props.location);
     this.fetchFromLocation(this.props.location);
   }
 
@@ -36,13 +37,13 @@ class FriendSearchView extends Component {
     }
   }
 
-  fetchFromLocation({ query: { q } }) {
-    this.handleSearch(q);
+  fetchFromLocation({ query: { term, field } }) {
+    console.log(field);
+    this.handleSearch(term);
   }
 
   handleSearch(value) {
     const { dispatch } = this.props;
-
     dispatch(setQuery(value));
     dispatch(fetchFriends());
   }
