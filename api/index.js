@@ -1,5 +1,6 @@
-
+//
 // Term-Search API call
+//
 export default function search({ query, subjectField }) {
   const apiUrl = 'http://localhost:2020/api/dictentries/startsWith?';
   const queryString = `term=${query}&limit=100&skip=0&subjectFieldStr=${subjectField}`;
