@@ -13,7 +13,6 @@ const defaultProps = {
 
 function SearchInput(props) {
   const { value, handleSearch } = props;
-
   const onChange = (e) => handleSearch(e.target.value);
   const onKeyDown = (e) => {
     if (e.keyCode === ENTER_KEYCODE) {

@@ -9,6 +9,13 @@ export function setQuery(query = '') {
   };
 }
 
+export function setSubjectField(subjectField = '') {
+  return {
+    type: types.SET_SUBJECTFIELD,
+    subjectField,
+  };
+}
+
 export function setDictentries(dictentries = []) {
   return {
     type: types.SET_DICTENTRIES,
@@ -18,13 +25,14 @@ export function setDictentries(dictentries = []) {
 
 export function fetchDictentries() {
   return (dispatch, getState) => {
-    const { query } = getState();
+    const { query, subjectField } = getState();
 
     browserHistory.push({
-      query: { term: query || undefined },
+      query: { term: query || undefined,
+        subjectField: subjectField || undefined },
     });
 
-    search(query).then(dictentries => {
+    search({ query, subjectField }).then(dictentries => {
       dispatch(setDictentries(dictentries));
     });
   };

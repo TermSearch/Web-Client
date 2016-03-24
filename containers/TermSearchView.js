@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setQuery, fetchDictentries } from '../actions';
+import { setSubjectField, setQuery, fetchDictentries } from '../actions';
 
 import SearchInput from '../components/SearchInput';
 import DictentryList from '../components/DictentryList';
+import SubjectFieldList from '../components/SubjectFieldList';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -15,6 +16,7 @@ const propTypes = {
 
 const defaultProps = {
   query: '',
+  subjectField: '',
   dictentries: [],
 };
 
@@ -22,6 +24,7 @@ class TermSearchView extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSubjectFieldChange = this.handleSubjectFieldChange.bind(this);
   }
 
   // fetch on page load
@@ -36,19 +39,26 @@ class TermSearchView extends Component {
     }
   }
 
-  fetchFromLocation({ query: { term } }) {
+  fetchFromLocation({ query: { term, subjectField } }) {
+    const { dispatch } = this.props;
+    dispatch(setSubjectField(subjectField));
     this.handleSearch(term);
   }
 
-  handleSearch(value) {
+  handleSearch(term) {
     const { dispatch } = this.props;
-    dispatch(setQuery(value));
+    dispatch(setQuery(term));
+    dispatch(fetchDictentries());
+  }
+
+  handleSubjectFieldChange(subjectField) {
+    const { dispatch } = this.props;
+    dispatch(setSubjectField(subjectField));
     dispatch(fetchDictentries());
   }
 
   render() {
     const { query, dictentries } = this.props;
-
     return (
       <div className="app">
         <SearchInput
@@ -56,7 +66,13 @@ class TermSearchView extends Component {
           placeholder="Vul hier een Duitse term in..."
           handleSearch={this.handleSearch}
         />
-      <DictentryList dictentries={dictentries} />
+        <SubjectFieldList
+          dictentries={dictentries}
+          handleSubjectFieldChange={this.handleSubjectFieldChange}
+        />
+        <DictentryList
+          dictentries={dictentries}
+        />
       </div>
     );
   }
@@ -65,7 +81,8 @@ class TermSearchView extends Component {
 TermSearchView.propTypes = propTypes;
 TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ query, dictentries }) => ({
+export default connect(({ query, subjectField, dictentries }) => ({
   query,
+  subjectField,
   dictentries,
 }))(TermSearchView);
