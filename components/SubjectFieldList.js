@@ -3,10 +3,7 @@ import SubjectFieldButton from './SubjectFieldButton';
 
 const propTypes = {
   handleSubjectFieldChange: PropTypes.func.isRequired,
-  dictentries: PropTypes.arrayOf(PropTypes.shape({
-    de: PropTypes.string.isRequired,
-    nl: PropTypes.array,
-  })),
+  dictentries: PropTypes.array,
 };
 
 const defaultProps = {
@@ -41,8 +38,9 @@ function SubjectFieldList(props) {
   const subjectFields = filterSubjectFields(dictentries);
   return (
     <ul>
-      {subjectFields.map(subjectField => (
+      {subjectFields.map((subjectField, i) => (
           <SubjectFieldButton
+            key={i}
             subjectFieldStr={subjectField}
             handleSubjectFieldChange={handleSubjectFieldChange}
           />
