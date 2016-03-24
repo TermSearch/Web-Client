@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   query: '',
-  subjectField: '',
+  subjectField: [],
   dictentries: [],
 };
 
@@ -18,7 +18,7 @@ export default function dictEntryListReducer(state = initialState, action) {
     case types.SET_SUBJECTFIELD:
       return {
         ...state,
-        subjectField: action.subjectField,
+        subjectField: [...state.subjectField].concat(action.subjectField),
       };
 
     case types.SET_DICTENTRIES:

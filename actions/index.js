@@ -9,7 +9,7 @@ export function setQuery(query = '') {
   };
 }
 
-export function setSubjectField(subjectField = '') {
+export function setSubjectField(subjectField = []) {
   return {
     type: types.SET_SUBJECTFIELD,
     subjectField,
@@ -27,12 +27,15 @@ export function fetchDictentries() {
   return (dispatch, getState) => {
     const { query, subjectField } = getState();
 
+    const subjectFieldStr = subjectField.join(',');
+    console.log(subjectFieldStr);
+
     browserHistory.push({
       query: { term: query || undefined,
-        subjectField: subjectField || undefined },
+        subjectField: subjectFieldStr || undefined },
     });
 
-    search({ query, subjectField }).then(dictentries => {
+    search({ query, subjectField: subjectFieldStr }).then(dictentries => {
       dispatch(setDictentries(dictentries));
     });
   };

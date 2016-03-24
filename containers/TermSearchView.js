@@ -16,7 +16,7 @@ const propTypes = {
 
 const defaultProps = {
   query: '',
-  subjectField: '',
+  subjectField: [],
   dictentries: [],
 };
 
