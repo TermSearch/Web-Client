@@ -8,18 +8,19 @@ const propTypes = {
 
 function SubjectFieldButton(props) {
   const { subjectField, handleSubjectFieldsChange, active } = props;
-  const onClick = (e) => handleSubjectFieldsChange(e.target.value);
-  let classNames = 'subjectfield-button';
-  if (active) classNames += ' active';
+  const onChange = (e) => handleSubjectFieldsChange(e.target.value);
   return (
-    <button
-      className={classNames}
-      active={active}
-      value={subjectField}
-      onClick={onClick}
-    >
-      {subjectField}
-    </button>
+      <span className="subjectfield-radio">
+        <input
+          type="radio"
+          name={subjectField}
+          checked={active}
+          value={subjectField}
+          onChange={onChange}
+        />
+        <span> {subjectField}</span>
+        <br />
+      </span>
   );
 }
 
