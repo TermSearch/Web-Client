@@ -31,7 +31,7 @@ export function fetchDictentries() {
       query: { term: term || undefined },
     });
 
-    console.log(`subjectFields in fetchDictentries: ${subjectFields}`);
+    // console.log(`subjectFields in fetchDictentries: ${subjectFields}`);
 
     search({ term, subjectFields }).then(dictentries => {
       dispatch(setDictentries(dictentries));

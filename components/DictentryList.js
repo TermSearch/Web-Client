@@ -5,6 +5,7 @@ const propTypes = {
   dictentries: PropTypes.arrayOf(PropTypes.shape({
     de: PropTypes.string.isRequired,
     nl: PropTypes.array,
+    subjectFields: PropTypes.array,
   })),
 };
 
@@ -12,12 +13,19 @@ const defaultProps = {
   dictentries: [],
 };
 
+// Returns an array of subjectfield strings
+const getSubjectFields = (subjectFields) => subjectFields.map(sf => sf.termStr);
+
 function DictentryList({ dictentries }) {
   return (
     <ul className="term-list">
       {dictentries.map(dictentry => (
         <li key={dictentry.id}>
-          <TermThumbnail term={dictentry.de} translation={dictentry.nl.join(', ')} />
+          <TermThumbnail
+            term={dictentry.de}
+            translation={dictentry.nl.join(', ')}
+            subjectFields={getSubjectFields(dictentry.subjectFields).join(', ')}
+          />
         </li>
       ))}
     </ul>

@@ -34,17 +34,19 @@ const filterSubjectFields = (dictentries) => {
   return filterDuplicates(all);
 };
 
+// Returns true is array contains element
+const arrayContains = (array, element) => array.indexOf(element) > -1;
+
+
 function SubjectFieldList(props) {
-  const dictentries = props.dictentries;
-  const subjectFields = props.subjectFields;
-  const handleSubjectFieldsChange = props.handleSubjectFieldsChange;
+  const { dictentries, subjectFields, handleSubjectFieldsChange } = props;
   const subjectFieldsInResults = filterSubjectFields(dictentries);
   // console.log(subjectFields);
   return (
     <ul>
       {subjectFieldsInResults.map((subjectFieldInResult, i) => (
           <SubjectFieldButton
-            active={!subjectFields.indexOf(subjectFieldInResult)}
+            active={arrayContains(subjectFields, subjectFieldInResult)}
             key={i}
             subjectField={subjectFieldInResult}
             handleSubjectFieldsChange={handleSubjectFieldsChange}
