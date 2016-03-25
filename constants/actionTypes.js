@@ -1,3 +1,3 @@
-export const SET_QUERY = 'SET_QUERY';
-export const SET_SUBJECTFIELD = 'SET_SUBJECTFIELD';
+export const SET_TERM = 'SET_TERM';
+export const SET_SUBJECTFIELDS = 'SET_SUBJECTFIELDS';
 export const SET_DICTENTRIES = 'SET_DICTENTRIES';

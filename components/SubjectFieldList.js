@@ -2,12 +2,14 @@ import React, { PropTypes } from 'react';
 import SubjectFieldButton from './SubjectFieldButton';
 
 const propTypes = {
-  handleSubjectFieldChange: PropTypes.func.isRequired,
+  handleSubjectFieldsChange: PropTypes.func.isRequired,
+  subjectFields: PropTypes.array,
   dictentries: PropTypes.array,
 };
 
 const defaultProps = {
   dictentries: [],
+  subjectFields: [],
 };
 
 const filterDuplicates = (arr) => {
@@ -34,15 +36,18 @@ const filterSubjectFields = (dictentries) => {
 
 function SubjectFieldList(props) {
   const dictentries = props.dictentries;
-  const handleSubjectFieldChange = props.handleSubjectFieldChange;
-  const subjectFields = filterSubjectFields(dictentries);
+  const subjectFields = props.subjectFields;
+  const handleSubjectFieldsChange = props.handleSubjectFieldsChange;
+  const subjectFieldsInResults = filterSubjectFields(dictentries);
+  // console.log(subjectFields);
   return (
     <ul>
-      {subjectFields.map((subjectField, i) => (
+      {subjectFieldsInResults.map((subjectFieldInResult, i) => (
           <SubjectFieldButton
+            active={!subjectFields.indexOf(subjectFieldInResult)}
             key={i}
-            subjectFieldStr={subjectField}
-            handleSubjectFieldChange={handleSubjectFieldChange}
+            subjectField={subjectFieldInResult}
+            handleSubjectFieldsChange={handleSubjectFieldsChange}
           />
         )
     )}

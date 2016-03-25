@@ -2,17 +2,17 @@ import { browserHistory } from 'react-router';
 import * as types from '../constants/actionTypes';
 import search from '../api';
 
-export function setQuery(query = '') {
+export function setTerm(term = '') {
   return {
-    type: types.SET_QUERY,
-    query,
+    type: types.SET_TERM,
+    term,
   };
 }
 
-export function setSubjectField(subjectField = []) {
+export function setSubjectFields(subjectFields = []) {
   return {
-    type: types.SET_SUBJECTFIELD,
-    subjectField,
+    type: types.SET_SUBJECTFIELDS,
+    subjectFields,
   };
 }
 
@@ -25,17 +25,15 @@ export function setDictentries(dictentries = []) {
 
 export function fetchDictentries() {
   return (dispatch, getState) => {
-    const { query, subjectField } = getState();
-
-    const subjectFieldStr = subjectField.join(',');
-    console.log(subjectFieldStr);
+    const { term, subjectFields } = getState();
 
     browserHistory.push({
-      query: { term: query || undefined,
-        subjectField: subjectFieldStr || undefined },
+      query: { term: term || undefined },
     });
 
-    search({ query, subjectField: subjectFieldStr }).then(dictentries => {
+    console.log(`subjectFields in fetchDictentries: ${subjectFields}`);
+
+    search({ term, subjectFields }).then(dictentries => {
       dispatch(setDictentries(dictentries));
     });
   };

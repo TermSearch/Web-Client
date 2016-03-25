@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setSubjectField, setQuery, fetchDictentries } from '../actions';
+import { setSubjectFields, setTerm, fetchDictentries } from '../actions';
 
 import SearchInput from '../components/SearchInput';
 import DictentryList from '../components/DictentryList';
@@ -10,13 +10,14 @@ import SubjectFieldList from '../components/SubjectFieldList';
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  query: PropTypes.string,
+  subjectFields: PropTypes.array,
+  term: PropTypes.string,
   dictentries: PropTypes.array,
 };
 
 const defaultProps = {
-  query: '',
-  subjectField: [],
+  term: '',
+  subjectFields: [],
   dictentries: [],
 };
 
@@ -24,7 +25,7 @@ class TermSearchView extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleSubjectFieldChange = this.handleSubjectFieldChange.bind(this);
+    this.handleSubjectFieldsChange = this.handleSubjectFieldsChange.bind(this);
   }
 
   // fetch on page load
@@ -39,36 +40,36 @@ class TermSearchView extends Component {
     }
   }
 
-  fetchFromLocation({ query: { term, subjectField } }) {
-    const { dispatch } = this.props;
-    dispatch(setSubjectField(subjectField));
+  fetchFromLocation({ query: { term } }) {
     this.handleSearch(term);
   }
 
   handleSearch(term) {
     const { dispatch } = this.props;
-    dispatch(setQuery(term));
+    dispatch(setTerm(term));
     dispatch(fetchDictentries());
   }
 
-  handleSubjectFieldChange(subjectField) {
+  handleSubjectFieldsChange(subjectFields) {
     const { dispatch } = this.props;
-    dispatch(setSubjectField(subjectField));
+    dispatch(setSubjectFields(subjectFields));
     dispatch(fetchDictentries());
   }
 
   render() {
-    const { query, dictentries } = this.props;
+    const { term, subjectFields, dictentries } = this.props;
+    // console.log(subjectFields);
     return (
       <div className="app">
         <SearchInput
-          value={query}
+          value={term}
           placeholder="Vul hier een Duitse term in..."
           handleSearch={this.handleSearch}
         />
         <SubjectFieldList
+          subjectFields={subjectFields}
           dictentries={dictentries}
-          handleSubjectFieldChange={this.handleSubjectFieldChange}
+          handleSubjectFieldsChange={this.handleSubjectFieldsChange}
         />
         <DictentryList
           dictentries={dictentries}
@@ -81,8 +82,8 @@ class TermSearchView extends Component {
 TermSearchView.propTypes = propTypes;
 TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ query, subjectField, dictentries }) => ({
-  query,
-  subjectField,
+export default connect(({ term, subjectFields, dictentries }) => ({
+  term,
+  subjectFields,
   dictentries,
 }))(TermSearchView);
