@@ -21,6 +21,18 @@ export default function dictEntryListReducer(state = initialState, action) {
         subjectFields: [...state.subjectFields].concat(action.subjectFields),
       };
 
+    case types.ADD_SUBJECTFIELD:
+      return {
+        ...state,
+        subjectFields: [...state.subjectFields].push(action.subjectField),
+      };
+
+    case types.REMOVE_SUBJECTFIELD:
+      return {
+        ...state,
+        subjectFields: state.subjectFields.filter(item => item !== action.subjectField),
+      };
+
     case types.SET_DICTENTRIES:
       return {
         ...state,
