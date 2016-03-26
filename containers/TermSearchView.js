@@ -50,6 +50,7 @@ class TermSearchView extends Component {
     dispatch(fetchDictentries());
   }
 
+  // TODO Move this to children
   handleSubjectFieldsChange(subjectFields) {
     const { dispatch } = this.props;
     dispatch(setSubjectFields(subjectFields));
