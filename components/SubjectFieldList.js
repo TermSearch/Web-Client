@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import SubjectFieldButton from './SubjectFieldButton';
 
 const propTypes = {
-  handleSubjectFieldsChange: PropTypes.func.isRequired,
+  handleSubjectFieldChange: PropTypes.func.isRequired,
   subjectFields: PropTypes.array,
   dictentries: PropTypes.array,
 };
@@ -39,7 +39,7 @@ const arrayContains = (array, element) => array.indexOf(element) > -1;
 
 
 function SubjectFieldList(props) {
-  const { dictentries, subjectFields, handleSubjectFieldsChange } = props;
+  const { dictentries, subjectFields, handleSubjectFieldChange } = props;
   const subjectFieldsInResults = filterSubjectFields(dictentries);
   // console.log(subjectFields);
   return (
@@ -49,7 +49,7 @@ function SubjectFieldList(props) {
             active={arrayContains(subjectFields, subjectFieldInResult)}
             key={i}
             subjectField={subjectFieldInResult}
-            handleSubjectFieldsChange={handleSubjectFieldsChange}
+            handleSubjectFieldChange={handleSubjectFieldChange}
           />
         )
     )}

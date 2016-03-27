@@ -9,10 +9,17 @@ export function setTerm(term = '') {
   };
 }
 
-export function setSubjectFields(subjectFields = []) {
+export function addSubjectField(subjectField = '') {
   return {
-    type: types.SET_SUBJECTFIELDS,
-    subjectFields,
+    type: types.ADD_SUBJECTFIELD,
+    subjectField,
+  };
+}
+
+export function removeSubjectField(subjectField = '') {
+  return {
+    type: types.REMOVE_SUBJECTFIELD,
+    subjectField,
   };
 }
 

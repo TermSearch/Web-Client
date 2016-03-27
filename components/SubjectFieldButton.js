@@ -2,17 +2,17 @@ import React, { PropTypes } from 'react';
 
 const propTypes = {
   subjectField: PropTypes.string.isRequired,
-  handleSubjectFieldsChange: PropTypes.func.isRequired,
+  handleSubjectFieldChange: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
 };
 
 function SubjectFieldButton(props) {
-  const { subjectField, handleSubjectFieldsChange, active } = props;
-  const onChange = (e) => handleSubjectFieldsChange(e.target.value);
+  const { subjectField, handleSubjectFieldChange, active } = props;
+  const onChange = (e) => handleSubjectFieldChange(e.target.value);
   return (
-      <span className="subjectfield-radio">
+      <span className="subjectfield-checkbox">
         <input
-          type="radio"
+          type="checkbox"
           name={subjectField}
           checked={active}
           value={subjectField}

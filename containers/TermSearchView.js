@@ -1,7 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setSubjectFields, setTerm, fetchDictentries } from '../actions';
+import {
+  addSubjectField,
+  removeSubjectField,
+  setTerm,
+  fetchDictentries,
+} from '../actions';
 
 import SearchInput from '../components/SearchInput';
 import DictentryList from '../components/DictentryList';
@@ -25,7 +30,7 @@ class TermSearchView extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleSubjectFieldsChange = this.handleSubjectFieldsChange.bind(this);
+    this.handleSubjectFieldChange = this.handleSubjectFieldChange.bind(this);
   }
 
   // fetch on page load
@@ -51,9 +56,9 @@ class TermSearchView extends Component {
   }
 
   // TODO Move this to children
-  handleSubjectFieldsChange(subjectFields) {
+  handleSubjectFieldChange(subjectFields) {
     const { dispatch } = this.props;
-    dispatch(setSubjectFields(subjectFields));
+    dispatch(addSubjectField(subjectFields));
     dispatch(fetchDictentries());
   }
 
@@ -70,7 +75,7 @@ class TermSearchView extends Component {
         <SubjectFieldList
           subjectFields={subjectFields}
           dictentries={dictentries}
-          handleSubjectFieldsChange={this.handleSubjectFieldsChange}
+          handleSubjectFieldChange={this.handleSubjectFieldChange}
         />
         <DictentryList
           dictentries={dictentries}
