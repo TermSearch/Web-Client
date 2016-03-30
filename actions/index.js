@@ -9,16 +9,9 @@ export function setTerm(term = '') {
   };
 }
 
-export function addSubjectField(subjectField = '') {
+export function toggleSubjectField(subjectField = '') {
   return {
-    type: types.ADD_SUBJECTFIELD,
-    subjectField,
-  };
-}
-
-export function removeSubjectField(subjectField = '') {
-  return {
-    type: types.REMOVE_SUBJECTFIELD,
+    type: types.TOGGLE_SUBJECTFIELD,
     subjectField,
   };
 }
@@ -32,7 +25,7 @@ export function setDictentries(dictentries = []) {
 
 export function fetchDictentries() {
   return (dispatch, getState) => {
-    const { term, subjectFields } = getState();
+    const { term, selectedSubjectFields } = getState();
 
     browserHistory.push({
       query: { term: term || undefined },
@@ -40,7 +33,7 @@ export function fetchDictentries() {
 
     // console.log(`subjectFields in fetchDictentries: ${subjectFields}`);
 
-    search({ term, subjectFields }).then(dictentries => {
+    search({ term, selectedSubjectFields }).then(dictentries => {
       dispatch(setDictentries(dictentries));
     });
   };

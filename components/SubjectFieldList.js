@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 import SubjectFieldButton from './SubjectFieldButton';
 
 const propTypes = {
-  handleSubjectFieldChange: PropTypes.func.isRequired,
-  subjectFields: PropTypes.array,
+  handleSubjectFieldToggle: PropTypes.func.isRequired,
+  selectedSubjectFields: PropTypes.array,
   dictentries: PropTypes.array,
 };
 
 const defaultProps = {
   dictentries: [],
-  subjectFields: [],
+  selectedSubjectFields: [],
 };
 
 const filterDuplicates = (arr) => {
@@ -34,22 +34,18 @@ const filterSubjectFields = (dictentries) => {
   return filterDuplicates(all);
 };
 
-// Returns true is array contains element
-const arrayContains = (array, element) => array.indexOf(element) > -1;
-
-
 function SubjectFieldList(props) {
-  const { dictentries, subjectFields, handleSubjectFieldChange } = props;
+  const { dictentries, selectedSubjectFields, handleSubjectFieldToggle } = props;
   const subjectFieldsInResults = filterSubjectFields(dictentries);
-  // console.log(subjectFields);
+  console.log(`In SubjectFieldList: ${selectedSubjectFields}`);
   return (
     <ul>
       {subjectFieldsInResults.map((subjectFieldInResult, i) => (
           <SubjectFieldButton
-            active={arrayContains(subjectFields, subjectFieldInResult)}
+            active={(selectedSubjectFields.indexOf(subjectFieldInResult) > -1)}
             key={i}
             subjectField={subjectFieldInResult}
-            handleSubjectFieldChange={handleSubjectFieldChange}
+            handleSubjectFieldToggle={handleSubjectFieldToggle}
           />
         )
     )}

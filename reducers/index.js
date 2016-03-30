@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   term: '',
-  subjectFields: [],
+  selectedSubjectFields: [],
   dictentries: [],
 };
 
@@ -15,16 +15,12 @@ export default function dictEntryListReducer(state = initialState, action) {
         term: action.term,
       };
 
-    case types.ADD_SUBJECTFIELD:
+    case types.TOGGLE_SUBJECTFIELD:
       return {
         ...state,
-        subjectFields: [...state.subjectFields].concat([action.subjectField]),
-      };
-
-    case types.REMOVE_SUBJECTFIELD:
-      return {
-        ...state,
-        subjectFields: state.subjectFields.filter(item => item !== action.subjectField),
+        selectedSubjectFields: (state.selectedSubjectFields.indexOf(action.subjectField) > -1)
+                        ? state.selectedSubjectFields.filter(item => item !== action.subjectField)
+                        : [...state.selectedSubjectFields].concat([action.subjectField]),
       };
 
     case types.SET_DICTENTRIES:

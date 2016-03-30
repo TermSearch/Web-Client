@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 
 const propTypes = {
   subjectField: PropTypes.string.isRequired,
-  handleSubjectFieldChange: PropTypes.func.isRequired,
+  handleSubjectFieldToggle: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
 };
 
 function SubjectFieldButton(props) {
-  const { subjectField, handleSubjectFieldChange, active } = props;
-  const onChange = (e) => handleSubjectFieldChange(e.target.value);
+  const { subjectField, handleSubjectFieldToggle, active } = props;
+  const onChange = (e) => handleSubjectFieldToggle(e.target.value);
   return (
       <span className="subjectfield-checkbox">
         <input

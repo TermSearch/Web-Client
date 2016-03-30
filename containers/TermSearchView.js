@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  addSubjectField,
-  removeSubjectField,
+  toggleSubjectField,
   setTerm,
   fetchDictentries,
 } from '../actions';
@@ -15,14 +14,14 @@ import SubjectFieldList from '../components/SubjectFieldList';
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  subjectFields: PropTypes.array,
+  selectedSubjectFields: PropTypes.array,
   term: PropTypes.string,
   dictentries: PropTypes.array,
 };
 
 const defaultProps = {
   term: '',
-  subjectFields: [],
+  selectedSubjectFields: [],
   dictentries: [],
 };
 
@@ -30,7 +29,7 @@ class TermSearchView extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleSubjectFieldChange = this.handleSubjectFieldChange.bind(this);
+    this.handleSubjectFieldToggle = this.handleSubjectFieldToggle.bind(this);
   }
 
   // fetch on page load
@@ -56,15 +55,15 @@ class TermSearchView extends Component {
   }
 
   // TODO Move this to children
-  handleSubjectFieldChange(subjectFields) {
+  handleSubjectFieldToggle(subjectField) {
     const { dispatch } = this.props;
-    dispatch(addSubjectField(subjectFields));
+    dispatch(toggleSubjectField(subjectField));
     dispatch(fetchDictentries());
   }
 
   render() {
-    const { term, subjectFields, dictentries } = this.props;
-    // console.log(`In TermSearchView: ${subjectFields}`);
+    const { term, selectedSubjectFields, dictentries } = this.props;
+    console.log(`In TermSearchView: ${selectedSubjectFields}`);
     return (
       <div className="app">
         <SearchInput
@@ -73,9 +72,9 @@ class TermSearchView extends Component {
           handleSearch={this.handleSearch}
         />
         <SubjectFieldList
-          subjectFields={subjectFields}
+          selectedSubjectFields={selectedSubjectFields}
           dictentries={dictentries}
-          handleSubjectFieldChange={this.handleSubjectFieldChange}
+          handleSubjectFieldToggle={this.handleSubjectFieldToggle}
         />
         <DictentryList
           dictentries={dictentries}
@@ -88,8 +87,8 @@ class TermSearchView extends Component {
 TermSearchView.propTypes = propTypes;
 TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ term, subjectFields, dictentries }) => ({
+export default connect(({ term, selectedSubjectFields, dictentries }) => ({
   term,
-  subjectFields,
+  selectedSubjectFields,
   dictentries,
 }))(TermSearchView);
