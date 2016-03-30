@@ -15,6 +15,8 @@ export default function dictEntryListReducer(state = initialState, action) {
         term: action.term,
       };
 
+    // Removes subjectField from selectedSubjectFields array if it exists
+    // Adds it if it doesn't
     case types.TOGGLE_SUBJECTFIELD:
       return {
         ...state,

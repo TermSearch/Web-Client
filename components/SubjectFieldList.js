@@ -37,7 +37,7 @@ const filterSubjectFields = (dictentries) => {
 function SubjectFieldList(props) {
   const { dictentries, selectedSubjectFields, handleSubjectFieldToggle } = props;
   const subjectFieldsInResults = filterSubjectFields(dictentries);
-  console.log(`In SubjectFieldList: ${selectedSubjectFields}`);
+  // console.log(`In SubjectFieldList: ${selectedSubjectFields}`);
   return (
     <ul>
       {subjectFieldsInResults.map((subjectFieldInResult, i) => (

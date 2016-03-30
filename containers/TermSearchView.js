@@ -63,7 +63,7 @@ class TermSearchView extends Component {
 
   render() {
     const { term, selectedSubjectFields, dictentries } = this.props;
-    console.log(`In TermSearchView: ${selectedSubjectFields}`);
+    // console.log(`In TermSearchView: ${selectedSubjectFields}`);
     return (
       <div className="app">
         <SearchInput
