@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha -w --compilers js:babel-register ./tests/**"
+    "test": "mocha --compilers js:babel-register ./tests/**"
   },
   "author": "Koen van Gilst",
   "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.5.0",
     "express": "^4.13.4",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
@@ -32,6 +31,7 @@
     "chai": "^3.5.0",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
+    "eslint-config-google": "^0.4.0",
     "eslint-plugin-react": "^4.2.3",
     "mocha": "^2.4.5",
     "redux-logger": "^2.5.0",

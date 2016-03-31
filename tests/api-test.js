@@ -4,15 +4,19 @@
 
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-// import api from '../api/index.js';
+import search from '../api/index.js';
+import 'babel-polyfill';
 
-//
-// generatePriceOptions
-//
+describe('Testing Search function', () => {
 
-describe('API should return', () => {
-  const priceOptions = 0;
-  it('Should be 0', () => {
-    expect(priceOptions).to.be.a('number');
+  it('Should be a function', () => {
+    expect(search).to.be.a('function');
   });
+
+  const apiCall = search({ term: 'Anlage', selectedSubjectFields: '' });
+
+  it('Should return a Promise', () => {
+    expect(apiCall).to.be.a('Promise');
+  });
+
 });
