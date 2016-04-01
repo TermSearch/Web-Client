@@ -1,26 +1,22 @@
 //
 // Debounce function that returns a Promise
-// Source: https://github.com/moszeed/es6-promise-debounce
+// Based upon: https://github.com/moszeed/es6-promise-debounce
+// Move this to an external library
 //
 const debounce = (func, wait, immediate) => {
   let timeout;
-  return () => {
-    const context = this;
-    const args = arguments;
+  return (...args) => new Promise((resolve) => {
+    const later = () => {
+      timeout = null;
+      if (!immediate) resolve(func.apply(undefined, args));
+    };
 
-    return new Promise((resolve) => {
-      const later = () => {
-        timeout = null;
-        if (!immediate) resolve(func.apply(context, args));
-      };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
 
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-
-      if (callNow) resolve(func.apply(context, args));
-    });
-  };
+    if (callNow) resolve(func.apply(undefined, args));
+  });
 };
 
 //
