@@ -1,17 +1,20 @@
-const debounce = function (func, wait, immediate) {
-  var timeout;
-  return function () {
+//
+// Debounce function that returns a Promise
+// Source: https://github.com/moszeed/es6-promise-debounce
+//
+const debounce = (func, wait, immediate) => {
+  let timeout;
+  return () => {
+    const context = this;
+    const args = arguments;
 
-    var context = this,
-      args = arguments;
-
-    return new Promise(function (resolve) {
-      var later = function () {
+    return new Promise((resolve) => {
+      const later = () => {
         timeout = null;
         if (!immediate) resolve(func.apply(context, args));
       };
 
-      var callNow = immediate && !timeout;
+      const callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
 
@@ -23,14 +26,18 @@ const debounce = function (func, wait, immediate) {
 //
 // Term-Search API call
 //
-export default function search({ term, selectedSubjectFields }) {
+const apiCall = ({ term, selectedSubjectFields }) => {
   const apiUrl = 'http://localhost:2020/api/dictentries/startsWith?';
   const queryString = `term=${term}&limit=100&skip=0&subjectFields=${selectedSubjectFields}`;
   const url = apiUrl + queryString;
   // console.log(`Query: ${url}`);
+
   return fetch(url, { method: 'get' })
     .then(res => res.json())
     .then(json => json.results.dictentries || []); // should return an empty array if not found
-}
+};
 
-export { debounce };
+//
+// Export a debounced apiCall
+//
+export default debounce(apiCall, 500);
