@@ -1,7 +1,7 @@
 //
 // Debounce function that returns a Promise
 // Based upon: https://github.com/moszeed/es6-promise-debounce
-// Move this to an external library
+// TODO Move to an external library
 //
 const debounce = (func, wait, immediate) => {
   let timeout;
@@ -26,7 +26,6 @@ const apiCall = ({ term, selectedSubjectFields }) => {
   const apiUrl = 'http://localhost:2020/api/dictentries/startsWith?';
   const queryString = `term=${term}&limit=100&skip=0&subjectFields=${selectedSubjectFields}`;
   const url = apiUrl + queryString;
-  // console.log(`Query: ${url}`);
 
   return fetch(url, { method: 'get' })
     .then(res => res.json())

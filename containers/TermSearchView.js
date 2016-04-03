@@ -54,7 +54,6 @@ class TermSearchView extends Component {
     dispatch(fetchDictentries());
   }
 
-  // TODO Move this to children
   handleSubjectFieldToggle(subjectField) {
     const { dispatch } = this.props;
     dispatch(toggleSubjectField(subjectField));
@@ -63,7 +62,6 @@ class TermSearchView extends Component {
 
   render() {
     const { term, selectedSubjectFields, dictentries } = this.props;
-    // console.log(`In TermSearchView: ${selectedSubjectFields}`);
     return (
       <div className="app">
         <SearchInput
