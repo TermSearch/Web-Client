@@ -8,12 +8,9 @@
     "npm": "^3.0.0"
   },
   "scripts": {
-    "clean-dev": "rimraf ~/Websites/LIVE/term-search/static-app/public/dist/*",
-    "clean-prod": "npm run copy-prod && ssh caddy@178.62.196.36 'rm -f /opt/term.world/public/dist/*'",
-    "copy-dev": "cp dist/* ~/Websites/LIVE/term-search/static-app/public/dist",
-    "copy-prod": "scp -r ./dist caddy@178.62.196.36:/opt/term.world/public",
+    "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/static-app/public/dist/",
+    "copy:prod": "rsync --recursive --delete dist/ caddy@178.62.196.36:/opt/term.world/public/dist/",
     "restart-server": "ssh root@178.62.196.36 'restart termworld'",
-
     "clean": "rimraf dist",
     "compile": "better-npm-run compile",
     "lint": "eslint .",
@@ -25,8 +22,8 @@
     "test": "better-npm-run test",
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
-    "deploy:dev": "better-npm-run deploy:dev && npm run clean-dev && npm run copy-dev",
-    "deploy:prod": "better-npm-run deploy:prod && npm run clean-prod && npm run copy-prod",
+    "deploy:dev": "better-npm-run deploy:dev",
+    "deploy:prod": "better-npm-run deploy:prod && npm run restart-server",
     "flow:check": "babel-node bin/flow-check",
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
@@ -51,7 +48,7 @@
       }
     },
     "deploy:dev": {
-      "command": "npm run deploy",
+      "command": "npm run deploy && npm run copy:dev",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "app:*",
@@ -59,7 +56,7 @@
       }
     },
     "deploy:prod": {
-      "command": "npm run deploy",
+      "command": "npm run deploy && npm run copy:prod",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*",
