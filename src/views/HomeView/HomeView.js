@@ -38,7 +38,7 @@ export class HomeView extends React.Component<void, Props, void> {
               alt='This is a duck, because Redux.' />
           </div>
         </div>
-        <h1>Welcome to the React Redux Starter Kit</h1>
+        <h1>Welcome to the Term Search Client</h1>
         <h2>
           Sample Counter:
           {' '}

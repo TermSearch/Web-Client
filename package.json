@@ -8,9 +8,9 @@
     "npm": "^3.0.0"
   },
   "scripts": {
+    "restart:prod": "ssh caddy@178.62.196.36 'pm2 restart term-search'",
     "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/static-app/public/dist/",
-    "copy:prod": "rsync --recursive --delete dist/ caddy@178.62.196.36:/opt/term.world/public/dist/",
-    "restart-server": "ssh root@178.62.196.36 'restart termworld'",
+    "copy:prod": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-client",
     "clean": "rimraf dist",
     "compile": "better-npm-run compile",
     "lint": "eslint .",
@@ -23,7 +23,7 @@
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
-    "deploy:prod": "better-npm-run deploy:prod && npm run restart-server",
+    "deploy:prod": "better-npm-run deploy:prod",
     "flow:check": "babel-node bin/flow-check",
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
@@ -56,7 +56,7 @@
       }
     },
     "deploy:prod": {
-      "command": "npm run deploy && npm run copy:prod",
+      "command": "npm run deploy && npm run copy:prod && npm run restart:prod",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*",
