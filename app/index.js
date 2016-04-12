@@ -8,6 +8,11 @@ import TermSearchView from '../containers/TermSearchView';
 
 const store = configureStore();
 
+// For production
+const element = document.createElement('div');
+element.id = 'root';
+document.body.appendChild(element);
+
 const root = document.getElementById('root');
 
 // Only render when root element found
