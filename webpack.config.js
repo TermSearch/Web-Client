@@ -2,14 +2,21 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const merge = require('webpack-merge');
+
+// Detect how npm is run and branch based on that
+const TARGET = process.env.npm_lifecycle_event;
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
   dist: path.join(__dirname, 'dist'),
 };
 
-module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+const common = {
+  // Entry accepts a path or an object of entries.
+  // We'll be using the latter form given it's
+  // convenient with more complex configurations.
+  // devtool: 'cheap-module-eval-source-map',
   entry: {
     app: PATHS.app,
     // 'webpack-hot-middleware/client',
@@ -37,3 +44,13 @@ module.exports = {
     ],
   },
 };
+
+// Default configuration. We will return this if
+// Webpack is called outside of npm.
+if (TARGET === 'start' || !TARGET) {
+  module.exports = merge(common, {});
+}
+
+if (TARGET === 'build') {
+  module.exports = merge(common, {});
+}

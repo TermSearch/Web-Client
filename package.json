@@ -41,6 +41,7 @@
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4",
-    "webpack-manifest-plugin": "^1.0.0"
+    "webpack-manifest-plugin": "^1.0.0",
+    "webpack-merge": "^0.10.0"
   }
 }
