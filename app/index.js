@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import configureStore from './store/configureStore';
-import TermSearchView from './containers/TermSearchView';
+import configureStore from '../store/configureStore';
+import TermSearchView from '../containers/TermSearchView';
 
 const store = configureStore();
 
@@ -15,7 +15,7 @@ if (root) {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path="/search-client/">
+        <Route path="/">
           <IndexRoute component={TermSearchView} />
         </Route>
       </Router>

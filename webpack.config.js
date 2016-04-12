@@ -3,19 +3,24 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
+const PATHS = {
+  app: path.join(__dirname, 'app'),
+  dist: path.join(__dirname, 'dist'),
+};
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './index',
-  ],
+  entry: {
+    app: PATHS.app,
+    // 'webpack-hot-middleware/client',
+    // './index',
+  },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: PATHS.dist,
     filename: 'bundle.js',
-    publicPath: '/dist/',
   },
   plugins: [
-    new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
+    new CleanWebpackPlugin([PATHS.dist]),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
