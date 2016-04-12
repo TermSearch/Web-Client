@@ -13,7 +13,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-app.get('/', (req, res) => {
+app.get('/search-client/', (req, res) => {
   res.sendFile(`${__dirname}/index.html`);
 });
 
