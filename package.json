@@ -2,7 +2,11 @@
   "name": "TermSearch-Client",
   "version": "0.0.1",
   "description": "Client for Term Search API",
-  "main": "index.js",
+  "main": "./app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TermSearch/Web-Client.git"
+  },
   "scripts": {
     "restart:prod": "ssh caddy@178.62.196.36 'pm2 restart term-search'",
     "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/website/public/dist/",
@@ -15,7 +19,6 @@
   "author": "Koen van Gilst",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.13.4",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.0",
@@ -40,6 +43,7 @@
     "redux-logger": "^2.5.0",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
+    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.4",
     "webpack-manifest-plugin": "^1.0.0",
     "webpack-merge": "^0.10.0"
