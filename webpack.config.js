@@ -42,6 +42,12 @@ const common = {
         exclude: /node_modules/,
         include: __dirname,
       },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        // Include accepts either a path or an array of paths.
+        include: PATHS.app,
+      },
     ],
   },
 };

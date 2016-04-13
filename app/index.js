@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import './main.css';
 
 import configureStore from '../store/configureStore';
 import TermSearchView from '../containers/TermSearchView';
