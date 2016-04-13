@@ -12,7 +12,7 @@
     "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/website/public/dist/",
     "copy:prod": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-client",
     "start": "webpack-dev-server",
-    "build": "webpack -p",
+    "build": "webpack",
     "deploy:dev": "npm run build && npm run copy:dev",
     "deploy:prod": "npm run build && npm run copy:prod && npm run restart:prod"
   },
