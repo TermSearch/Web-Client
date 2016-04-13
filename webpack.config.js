@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const merge = require('webpack-merge');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 // Detect how npm is run and branch based on that
 const TARGET = process.env.npm_lifecycle_event;
@@ -84,6 +85,9 @@ if (TARGET === 'start' || !TARGET) {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+      new NpmInstallPlugin({
+        save: true, // --save
+      }),
     ],
   });
 }
