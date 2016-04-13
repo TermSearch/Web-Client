@@ -35,4 +35,4 @@ const apiCall = ({ term, selectedSubjectFields }) => {
 //
 // Export a debounced apiCall
 //
-export default debounce(apiCall, 500);
+export default debounce(apiCall, 100);

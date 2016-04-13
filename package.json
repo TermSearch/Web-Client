@@ -13,8 +13,10 @@
     "copy:prod": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-client",
     "start": "webpack-dev-server",
     "build": "webpack",
+    "webserver": "cd dist && browser-sync start --server",
     "deploy:dev": "npm run build && npm run copy:dev",
-    "deploy:prod": "npm run build && npm run copy:prod && npm run restart:prod"
+    "deploy:prod": "npm run build && npm run copy:prod && npm run restart:prod",
+    "stats": "webpack --profile --json > stats.json"
   },
   "author": "Koen van Gilst",
   "license": "MIT",
@@ -27,7 +29,6 @@
     "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-core": "^6.4.5",
     "babel-eslint": "^4.1.8",
     "babel-loader": "^6.2.2",
@@ -46,9 +47,7 @@
     "redux-logger": "^2.5.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13",
-    "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.6.4",
     "webpack-manifest-plugin": "^1.0.0",
     "webpack-merge": "^0.10.0"
   }

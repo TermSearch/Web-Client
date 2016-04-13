@@ -23,10 +23,10 @@ if (root) {
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/">
-          <Route path="search-client" component={TermSearchView} />
+          <IndexRoute component={TermSearchView} />
         </Route>
       </Router>
     </Provider>,
-    root
+    document.getElementById('root')
   );
 }

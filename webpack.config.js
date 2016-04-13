@@ -1,10 +1,10 @@
 const path = require('path');
+const merge = require('webpack-merge');
 const webpack = require('webpack');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const merge = require('webpack-merge');
-const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 // Load *package.json* so we can use `dependencies` from there
 const pkg = require('./package.json');
@@ -18,9 +18,6 @@ const PATHS = {
 };
 
 const common = {
-  // Entry accepts a path or an object of entries.
-  // We'll be using the latter form given it's
-  // convenient with more complex configurations.
   entry: {
     app: PATHS.app,
   },
@@ -29,13 +26,10 @@ const common = {
     filename: '[name].js',
   },
   plugins: [
-    new CleanWebpackPlugin([PATHS.dist]),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new ManifestPlugin(),
     new HtmlWebpackPlugin({
       title: 'Development Version',
+      // appMountId: 'root',
+      // inject: true,
     }),
   ],
   module: {
@@ -72,19 +66,9 @@ if (TARGET === 'start' || !TARGET) {
 
       // Display only errors to reduce the amount of output.
       stats: 'errors-only',
-
-      // Parse host and port from env to allow customization.
-      //
-      // If you use Vagrant or Cloud9, set
-      // host: process.env.HOST || '0.0.0.0';
-      //
-      // 0.0.0.0 is available to all network devices
-      // unlike default localhost
       host: process.env.HOST,
       port: process.env.PORT,
 
-      // If you want defaults, you can use a little trick like this
-      // port: process.env.PORT || 3000
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -98,23 +82,22 @@ if (TARGET === 'start' || !TARGET) {
   });
 }
 
-if (TARGET === 'build') {
+if (TARGET === 'build' || TARGET === 'stats') {
   module.exports = merge(common, {
-    // Define vendor entry point needed for splitting
     entry: {
-      // Set up an entry chunk for our vendor bundle.
-      // You can filter out dependencies here if needed with
-      // `.filter(...)`.
       vendor: Object.keys(pkg.dependencies),
     },
+    output: {
+      path: PATHS.build,
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[chunkhash].js',
+    },
     plugins: [
-      // Extract vendor and manifest files
+      new CleanWebpackPlugin([PATHS.dist]),
+      new ManifestPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor', 'manifest'],
       }),
-      // Setting DefinePlugin affects React library size!
-      // DefinePlugin replaces content "as is" so we need some
-      // extra quotes for the generated code to make sense
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"',
       }),
