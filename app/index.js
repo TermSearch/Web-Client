@@ -9,20 +9,21 @@ import TermSearchView from '../containers/TermSearchView';
 
 const store = configureStore();
 
-// For production
+// Add root div to DOM
 const element = document.createElement('div');
 element.id = 'root';
 document.body.appendChild(element);
 
+// Get root element from DOM
 const root = document.getElementById('root');
 
-// Only render when root element found
+// Render app to this element
 if (root) {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/">
-          <IndexRoute component={TermSearchView} />
+          <Route path="search-client" component={TermSearchView} />
         </Route>
       </Router>
     </Provider>,

@@ -28,7 +28,7 @@ export function fetchDictentries() {
     const { term, selectedSubjectFields } = getState();
 
     browserHistory.push({
-      pathname: '/',
+      pathname: '/search-client',
       query: { term: term || undefined },
     });
 
