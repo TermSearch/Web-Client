@@ -23,7 +23,7 @@ const debounce = (func, wait, immediate) => {
 // Term-Search API call
 //
 const apiCall = ({ term, selectedSubjectFields }) => {
-  const apiUrl = 'http://localhost:2020/dictentries/startsWith?';
+  const apiUrl = 'https://api.term-search.nl/dictentries/startsWith?';
   const queryString = `term=${term}&limit=100&skip=0&subjectFields=${selectedSubjectFields}`;
   const url = apiUrl + queryString;
 

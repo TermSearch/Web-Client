@@ -10,12 +10,12 @@
   "scripts": {
     "restart:prod": "ssh caddy@178.62.196.36 'pm2 restart term-search'",
     "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/website/public/dist/",
-    "copy:prod": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-client",
+    "copy:test": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-test",
     "start": "webpack-dev-server",
     "build": "webpack",
     "webserver": "cd dist && browser-sync start --server",
     "deploy:dev": "npm run build && npm run copy:dev",
-    "deploy:prod": "npm run build && npm run copy:prod && npm run restart:prod",
+    "deploy:test": "npm run build && npm run copy:test",
     "stats": "webpack --profile --json > stats.json"
   },
   "author": "Koen van Gilst",
