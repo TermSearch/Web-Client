@@ -14,19 +14,13 @@ const element = document.createElement('div');
 element.id = 'root';
 document.body.appendChild(element);
 
-// Get root element from DOM
-const root = document.getElementById('root');
-
-// Render app to this element
-if (root) {
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router history={browserHistory}>
-        <Route path="/">
-          <IndexRoute component={TermSearchView} />
-        </Route>
-      </Router>
-    </Provider>,
-    document.getElementById('root')
-  );
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/">
+        <IndexRoute component={TermSearchView} />
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+);

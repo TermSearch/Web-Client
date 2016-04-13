@@ -28,8 +28,6 @@ const common = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development Version',
-      // appMountId: 'root',
-      // inject: true,
     }),
   ],
   module: {
