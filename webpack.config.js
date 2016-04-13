@@ -93,6 +93,9 @@ if (TARGET === 'build' || TARGET === 'stats') {
     plugins: [
       new CleanWebpackPlugin([PATHS.dist]),
       new ManifestPlugin(),
+      new webpack.ProvidePlugin({
+        fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+      }),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor', 'manifest'],
       }),
