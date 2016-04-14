@@ -28,6 +28,8 @@ const common = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development Version',
+      template: './index.ejs',
+      unsupportedBrowser: true,
     }),
   ],
   module: {
