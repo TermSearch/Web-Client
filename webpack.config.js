@@ -30,6 +30,7 @@ const common = {
       title: 'Development Version',
       template: './index.ejs',
       unsupportedBrowser: true,
+      appMountId: 'root',
     }),
   ],
   module: {

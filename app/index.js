@@ -9,11 +9,6 @@ import TermSearchView from '../containers/TermSearchView';
 
 const store = configureStore();
 
-// Add root div to DOM
-const element = document.createElement('div');
-element.id = 'root';
-document.body.appendChild(element);
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
