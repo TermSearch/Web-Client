@@ -27,10 +27,8 @@ const common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Development Version',
+      title: 'Term Search Client',
       template: './index.ejs',
-      unsupportedBrowser: true,
-      appMountId: 'root',
     }),
   ],
   module: {
