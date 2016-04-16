@@ -9,6 +9,10 @@ import TermSearchView from '../containers/TermSearchView';
 
 const store = configureStore();
 
+const TARGET = process.env.npm_lifecycle_event;
+
+console.log(process.env.NODE_ENV);
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>

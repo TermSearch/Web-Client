@@ -23,7 +23,7 @@ const debounce = (func, wait, immediate) => {
 // Term-Search API call
 //
 const apiCall = ({ term, selectedSubjectFields }) => {
-  const apiUrl = 'https://api.term-search.nl/dictentries/startsWith?';
+  const apiUrl = process.env.API_URL + '/dictentries/startsWith?';
   const queryString = `term=${term}&limit=100&skip=0&subjectFields=${selectedSubjectFields}`;
   const url = apiUrl + queryString;
 
@@ -35,4 +35,4 @@ const apiCall = ({ term, selectedSubjectFields }) => {
 //
 // Export a debounced apiCall
 //
-export default debounce(apiCall, 100);
+export default debounce(apiCall, 1000);

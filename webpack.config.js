@@ -72,6 +72,7 @@ if (TARGET === 'start' || !TARGET) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"development"',
+        'process.env.API_URL': '"http://0.0.0.0:2020"',
       }),
       new webpack.HotModuleReplacementPlugin(),
       new NpmInstallPlugin({
@@ -95,6 +96,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
       new CleanWebpackPlugin([PATHS.dist]),
       new ManifestPlugin(),
       new webpack.ProvidePlugin({
+        // Polyfills for older/other browsers
         Promise: 'exports?global.Promise!es6-promise',
         fetch: 'exports?self.fetch!whatwg-fetch',
       }),
@@ -103,6 +105,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"',
+        'process.env.API_URL': '"https://api.term-search.nl"',
       }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
