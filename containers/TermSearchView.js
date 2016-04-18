@@ -51,7 +51,8 @@ class TermSearchView extends Component {
   handleSearch(term) {
     const { dispatch } = this.props;
     dispatch(setTerm(term));
-    dispatch(fetchDictentries());
+    // Only dispatch search query if term contains content
+    if (term) dispatch(fetchDictentries());
   }
 
   handleSubjectFieldToggle(subjectField) {
