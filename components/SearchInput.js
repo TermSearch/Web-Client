@@ -21,14 +21,26 @@ function SearchInput(props) {
   };
 
   return (
-    <input
-      {...props}
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      id="search-input"
-      type="search"
-    />
+    <div className="inputLP">
+      <form>
+        <div className="input-group">
+          <input
+            {...props}
+            className="form-control"
+            value={value}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
+            id="search-input"
+            type="search"
+          />
+          <span className="input-group-btn">
+            <button type="submit" className="btn btn-primary">
+              <span aria-hidden="true" className="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -34,4 +34,4 @@ const apiCall = ({ term, selectedSubjectFields }) => {
 //
 // Export a debounced apiCall
 //
-export default debounce(apiCall, 1000);
+export default debounce(apiCall, 2000); // wait 2 seconds before quering

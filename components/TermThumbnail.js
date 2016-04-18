@@ -9,11 +9,11 @@ const propTypes = {
 function TermThumbnail({ term, translation, subjectFields }) {
   return (
     <div className="term-thumbnail">
-      <h4>
+      <h6>
         {term}
         <span className="translation"> {translation}</span>
         <span className="subjectfield"> {subjectFields}</span>
-      </h4>
+      </h6>
     </div>
   );
 }

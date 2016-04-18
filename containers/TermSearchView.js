@@ -64,20 +64,31 @@ class TermSearchView extends Component {
   render() {
     const { term, selectedSubjectFields, dictentries } = this.props;
     return (
-      <div className="app">
-        <SearchInput
-          value={term}
-          placeholder="Vul hier een Duitse term in..."
-          handleSearch={this.handleSearch}
-        />
-        <SubjectFieldList
-          selectedSubjectFields={selectedSubjectFields}
-          dictentries={dictentries}
-          handleSubjectFieldToggle={this.handleSubjectFieldToggle}
-        />
-        <DictentryList
-          dictentries={dictentries}
-        />
+      <div className="app container">
+        <div className="row input-row">
+          <div className="col-sm-8 col-sm-offset-4">
+            <SearchInput
+              value={term}
+              placeholder="Vul hier een Duitse term in..."
+              handleSearch={this.handleSearch}
+            />
+          </div>
+        </div>
+        <div className="row results-row">
+          <div className="col-sm-4">
+            <p>Vakgebied</p>
+            <SubjectFieldList
+              selectedSubjectFields={selectedSubjectFields}
+              dictentries={dictentries}
+              handleSubjectFieldToggle={this.handleSubjectFieldToggle}
+            />
+          </div>
+          <div className="col-sm-8">
+            <DictentryList
+              dictentries={dictentries}
+            />
+          </div>
+        </div>
       </div>
     );
   }

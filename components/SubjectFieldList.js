@@ -38,7 +38,7 @@ function SubjectFieldList(props) {
   const { dictentries, selectedSubjectFields, handleSubjectFieldToggle } = props;
   const subjectFieldsInResults = filterSubjectFields(dictentries);
   return (
-    <ul>
+    <ul className="subjectfield-list">
       {subjectFieldsInResults.map((subjectFieldInResult, i) => (
           <SubjectFieldButton
             active={(selectedSubjectFields.indexOf(subjectFieldInResult) > -1)}
