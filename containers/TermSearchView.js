@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
+import SearchInput from '../components/SearchInput';
+import DictentryList from '../components/DictentryList';
+import SubjectFieldList from '../components/SubjectFieldList';
 import {
   toggleSubjectField,
   setTerm,
   fetchDictentries,
 } from '../actions';
-
-import SearchInput from '../components/SearchInput';
-import DictentryList from '../components/DictentryList';
-import SubjectFieldList from '../components/SubjectFieldList';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
