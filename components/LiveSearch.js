@@ -1,6 +1,9 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest'; // see example: http://codepen.io/moroshko/pen/LGNJMy
 import search from '../api';
+import debounce from '../util/debounce';
+
+const debouncedSearch = debounce(search, 500);
 
 /* ----------- */
 /*    Utils    */
@@ -44,7 +47,7 @@ class LiveSearch extends React.Component {
     });
     const escapedValue = escapeRegexCharacters(value.trim());
     // API call
-    search({ term: escapedValue, selectedSubjectFields }).then(dictentries => {
+    debouncedSearch({ term: escapedValue, selectedSubjectFields }).then(dictentries => {
       const suggestions = dictentries;
       if (value === this.state.value) {
         this.setState({
@@ -86,9 +89,11 @@ class LiveSearch extends React.Component {
       value,
       onChange: this.onChange
     };
+
     const status = (isLoading ? 'bezig...' : 'vul iets in voor suggesties');
+
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} onBlur={this.onSubmit}>
         <div className="input-group">
           <Autosuggest
             suggestions={suggestions}
