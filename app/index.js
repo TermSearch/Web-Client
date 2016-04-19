@@ -6,6 +6,7 @@ import './main.css';
 
 import configureStore from '../store/configureStore';
 import TermSearchView from '../containers/TermSearchView';
+import LiveSearch from '../components/LiveSearch';
 
 const store = configureStore();
 

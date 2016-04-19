@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SearchInput from '../components/SearchInput';
+import LiveSearch from '../components/LiveSearch';
 import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';
 import {
@@ -65,9 +66,8 @@ class TermSearchView extends Component {
       <div className="app container">
         <div className="row input-row">
           <div className="col-sm-8 col-sm-offset-4">
-            <SearchInput
-              value={term}
-              placeholder="Vul hier een Duitse term in..."
+            <LiveSearch
+              selectedSubjectFields={selectedSubjectFields}
               handleSearch={this.handleSearch}
             />
           </div>

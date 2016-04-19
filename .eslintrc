@@ -4,9 +4,12 @@
     "node": true,
     "browser": true
   },
-  "extends": "airbnb",
+  "extends": "eslint:recommended",
+  # "extends": "airbnb",
   "rules": {
-    "no-console": 1
+    "no-console": 1,
+    "no-unused-vars": 0,
+    "comma-dangle": 0,
     },
   "parserOptions": {
         "ecmaVersion": 6,
