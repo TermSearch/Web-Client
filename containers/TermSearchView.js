@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import SearchInput from '../components/SearchInput';
 import LiveSearch from '../components/LiveSearch';
 import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';

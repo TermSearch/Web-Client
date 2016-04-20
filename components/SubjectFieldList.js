@@ -24,19 +24,19 @@ const filterDuplicates = (arr) => {
   return onlyUniques;
 };
 
-const filterSubjectFields = (dictentries) => {
+const extractSubjectFields = (dictentries) => {
   const all = [];
   dictentries.forEach(dictEntry => {
     dictEntry.subjectFields.forEach(subjectField => {
       all.push(subjectField.termStr);
     });
   });
-  return filterDuplicates(all);
+  return all;
 };
 
 function SubjectFieldList(props) {
   const { dictentries, selectedSubjectFields, handleSubjectFieldToggle } = props;
-  const subjectFieldsInResults = filterSubjectFields(dictentries);
+  const subjectFieldsInResults = filterDuplicates(extractSubjectFields(dictentries)).sort();
   return (
     <ul className="subjectfield-list">
       {subjectFieldsInResults.map((subjectFieldInResult, i) => (

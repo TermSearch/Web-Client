@@ -3,7 +3,7 @@ import Autosuggest from 'react-autosuggest'; // see example: http://codepen.io/m
 import liveSearch from '../api/liveSearch';
 import debounce from '../util/debounce';
 
-const debouncedSearch = debounce(liveSearch, 500);
+const debouncedSearch = debounce(liveSearch, 200);
 
 /* ----------- */
 /*    Utils    */
@@ -93,11 +93,12 @@ class LiveSearch extends React.Component {
     const status = (isLoading ? 'bezig...' : 'vul iets in voor suggesties');
 
     return (
-      <form onSubmit={this.onSubmit} onBlur={this.onSubmit}>
+      <form onSubmit={this.onSubmit} >
         <div className="input-group">
           <Autosuggest
             suggestions={suggestions}
             onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+            focusInputOnSuggestionClick={false}
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
@@ -108,9 +109,9 @@ class LiveSearch extends React.Component {
             </button>
           </span>
         </div>
-        <div className="status">
+        {/* <div className="status">
           <strong>Status:</strong> {status}
-        </div>
+        </div>*/}
       </form>
     );
   }
