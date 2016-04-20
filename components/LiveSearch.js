@@ -1,13 +1,34 @@
-import React from 'react';
-import Autosuggest from 'react-autosuggest'; // see example: http://codepen.io/moroshko/pen/LGNJMy
+import React, { PropTypes } from 'react';
+import Autosuggest from 'react-autosuggest'; // see async example: http://codepen.io/moroshko/pen/EPZpev
 import liveSearch from '../api/liveSearch';
 import debounce from '../util/debounce';
+import { connect } from 'react-redux';
+import {
+  setTerm,
+  liveSearchLoading,
+  setSuggestions,
+} from '../actions';
 
-const debouncedSearch = debounce(liveSearch, 200);
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  selectedSubjectFields: PropTypes.array,
+  term: PropTypes.string,
+  liveSearchIsLoading: PropTypes.bool,
+  suggestions: PropTypes.array,
+};
+
+const defaultProps = {
+  term: '',
+  selectedSubjectFields: [],
+  liveSearchIsLoading: false,
+  suggestions: [],
+};
 
 /* ----------- */
 /*    Utils    */
 /* ----------- */
+
+const debouncedSearch = debounce(liveSearch, 500);
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {
@@ -31,74 +52,73 @@ function renderSuggestion(suggestion) {
 class LiveSearch extends React.Component {
   constructor() {
     super();
-    this.state = {
-      value: '',
-      suggestions: [],
-      isLoading: false,
-    };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this);
   }
 
-  loadSuggestions(value, selectedSubjectFields) {
-    this.setState({
-      isLoading: true
-    });
+  loadSuggestions(value) {
+    const { dispatch, selectedSubjectFields, term } = this.props;
+    // Start loading
+    dispatch(liveSearchLoading(true));
+    // Remove and escape unwanted characters
     const escapedValue = escapeRegexCharacters(value.trim());
-    // API call
-    debouncedSearch({ term: escapedValue, selectedSubjectFields }).then(dictentries => {
-      const suggestions = dictentries;
-      if (value === this.state.value) {
-        this.setState({
-          isLoading: false,
-          suggestions
-        });
-      } else { // Ignore suggestions if input value changed
-        this.setState({
-          isLoading: false
-        });
-      }
-    });
-  }
-
-  onChange(event, { newValue }) {
-    this.setState({
-      value: newValue
+    // Start API call
+    debouncedSearch({ term: escapedValue, selectedSubjectFields })
+      .then(dictentries => {
+        // console.log(dictentries);
+        // console.log(value);
+        // console.log(term);
+        dispatch(setSuggestions(dictentries));
+        if (value === term) {
+          dispatch(liveSearchLoading(false));
+          // Set suggestions to API results
+          // dispatch(setSuggestions(dictentries));
+        } else { // Ignore suggestions if input value changed
+          dispatch(liveSearchLoading(false));
+        }
     });
   }
 
   onSuggestionSelected(event, { suggestionValue }) {
-    this.loadSuggestions(suggestionValue, this.props.selectedSubjectFields);
+    this.loadSuggestions(suggestionValue);
   }
 
   onSuggestionsUpdateRequested({ value }) {
-    this.loadSuggestions(value, this.props.selectedSubjectFields);
+    this.loadSuggestions(value);
+  }
+
+  onChange(event, { newValue }) {
+    const { dispatch } = this.props;
+    dispatch(setTerm(newValue));
   }
 
   onSubmit(event) {
+    const { handleSearch, term } = this.props;
     event.preventDefault();
-    this.props.handleSearch(this.state.value);
+    handleSearch(term);
   }
 
   render() {
-    const { value, suggestions, isLoading } = this.state;
+    const { term, selectedSubjectFields, liveSearchIsLoading, suggestions } = this.props;
 
     const inputProps = {
       placeholder: "Vul hier een Duitse term in...",
-      value,
+      value: term,
       onChange: this.onChange
     };
 
-    const status = (isLoading ? 'bezig...' : 'vul iets in voor suggesties');
+    const status = (liveSearchIsLoading ? 'bezig...' : 'vul iets in voor suggesties');
 
     return (
-      <form onSubmit={this.onSubmit} >
+      <form onSubmit={this.onSubmit}>
+        <div className="status">
+          <strong>Status:</strong> {status}
+        </div>
         <div className="input-group">
           <Autosuggest
             suggestions={suggestions}
             onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-            focusInputOnSuggestionClick={false}
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
@@ -109,12 +129,20 @@ class LiveSearch extends React.Component {
             </button>
           </span>
         </div>
-        {/* <div className="status">
-          <strong>Status:</strong> {status}
-        </div>*/}
       </form>
     );
   }
 }
 
-export default LiveSearch;
+LiveSearch.propTypes = propTypes;
+LiveSearch.defaultProps = defaultProps;
+
+export default connect(({
+  term,
+  liveSearchIsLoading,
+  suggestions,
+}) => ({
+  term,
+  liveSearchIsLoading,
+  suggestions,
+}))(LiveSearch);

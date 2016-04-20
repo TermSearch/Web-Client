@@ -1,9 +1,11 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
+  liveSearchIsLoading: false,
   term: '',
   selectedSubjectFields: [],
   dictentries: [],
+  suggestions: [],
 };
 
 export default function dictEntryListReducer(state = initialState, action) {
@@ -13,6 +15,12 @@ export default function dictEntryListReducer(state = initialState, action) {
       return {
         ...state,
         term: action.term,
+      };
+
+    case types.LIVE_SEARCH_LOADING:
+      return {
+        ...state,
+        liveSearchIsLoading: action.liveSearchIsLoading,
       };
 
     // Removes subjectField from selectedSubjectFields array if it exists
@@ -29,6 +37,12 @@ export default function dictEntryListReducer(state = initialState, action) {
       return {
         ...state,
         dictentries: action.dictentries,
+      };
+
+    case types.SET_SUGGESTIONS:
+      return {
+        ...state,
+        suggestions: action.suggestions,
       };
 
     default:

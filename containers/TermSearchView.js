@@ -48,7 +48,7 @@ class TermSearchView extends Component {
 
   handleSearch(term) {
     const { dispatch } = this.props;
-    dispatch(setTerm(term));
+    // dispatch(setTerm(term));
     // Only dispatch search query if term contains content
     if (term) dispatch(fetchDictentries());
   }
@@ -66,8 +66,8 @@ class TermSearchView extends Component {
         <div className="row input-row">
           <div className="col-sm-8 col-sm-offset-4">
             <LiveSearch
-              selectedSubjectFields={selectedSubjectFields}
               handleSearch={this.handleSearch}
+              selectedSubjectFields={selectedSubjectFields}
             />
           </div>
         </div>
@@ -97,5 +97,5 @@ TermSearchView.defaultProps = defaultProps;
 export default connect(({ term, selectedSubjectFields, dictentries }) => ({
   term,
   selectedSubjectFields,
-  dictentries,
+  dictentries
 }))(TermSearchView);

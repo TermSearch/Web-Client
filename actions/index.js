@@ -9,6 +9,13 @@ export function setTerm(term = '') {
   };
 }
 
+export function liveSearchLoading(liveSearchIsLoading = false) {
+  return {
+    type: types.LIVE_SEARCH_LOADING,
+    liveSearchIsLoading,
+  }
+}
+
 export function toggleSubjectField(subjectField = '') {
   return {
     type: types.TOGGLE_SUBJECTFIELD,
@@ -20,6 +27,13 @@ export function setDictentries(dictentries = []) {
   return {
     type: types.SET_DICTENTRIES,
     dictentries,
+  };
+}
+
+export function setSuggestions(suggestions = []) {
+  return {
+    type: types.SET_SUGGESTIONS,
+    suggestions,
   };
 }
 
