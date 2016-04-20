@@ -1,9 +1,9 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest'; // see example: http://codepen.io/moroshko/pen/LGNJMy
-import search from '../api';
+import liveSearch from '../api/liveSearch';
 import debounce from '../util/debounce';
 
-const debouncedSearch = debounce(search, 500);
+const debouncedSearch = debounce(liveSearch, 500);
 
 /* ----------- */
 /*    Utils    */

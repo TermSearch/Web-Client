@@ -1,6 +1,6 @@
 import { browserHistory } from 'react-router';
 import * as types from '../constants/actionTypes';
-import search from '../api';
+import search from '../api/search';
 
 export function setTerm(term = '') {
   return {
