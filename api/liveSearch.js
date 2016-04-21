@@ -3,7 +3,7 @@
 //
 const API_LIMIT = 20;
 const API_SKIP = 0;
-const RESULTS_LIMIT = 5;
+const RESULTS_LIMIT = 10;
 
 const filterUniques = (dictentries) => {
   return dictentries.filter(

@@ -76,7 +76,6 @@ class TermSearchView extends Component {
         </div>
         <div className="row results-row">
           <div className="col-sm-4">
-            <p>Vakgebied</p>
             <SubjectFieldList
               selectedSubjectFields={selectedSubjectFields}
               dictentries={dictentries}

@@ -6,7 +6,7 @@ const propTypes = {
   active: PropTypes.bool.isRequired,
 };
 
-function SubjectFieldButton(props) {
+function SubjectFieldInput(props) {
   const { subjectField, handleSubjectFieldToggle, active } = props;
   const onChange = (e) => handleSubjectFieldToggle(e.target.value);
   return (
@@ -24,6 +24,6 @@ function SubjectFieldButton(props) {
   );
 }
 
-SubjectFieldButton.propTypes = propTypes;
+SubjectFieldInput.propTypes = propTypes;
 
-export default SubjectFieldButton;
+export default SubjectFieldInput;

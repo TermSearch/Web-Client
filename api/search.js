@@ -1,7 +1,7 @@
 //
 // Term-Search search api call
 //
-const LIMIT = 10;
+const LIMIT = 20;
 const SKIP = 0;
 
 export default ({ term, selectedSubjectFields }) => {

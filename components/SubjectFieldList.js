@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import SubjectFieldButton from './SubjectFieldButton';
+import SubjectFieldInput from './SubjectFieldInput';
 
 const propTypes = {
   handleSubjectFieldToggle: PropTypes.func.isRequired,
@@ -11,6 +11,20 @@ const defaultProps = {
   dictentries: [],
   selectedSubjectFields: [],
 };
+
+const extractSubjectFields = (dictentries) => {
+  const all = [];
+  dictentries.forEach(dictEntry => {
+    dictEntry.subjectFields.forEach(subjectField => {
+      all.push(subjectField.termStr);
+    });
+  });
+  return all;
+};
+
+const mergeSubjectFields = (subjectFields, selectedSubjectFields) => {
+  return subjectFields.concat(selectedSubjectFields);
+}
 
 const filterDuplicates = (arr) => {
   const onlyUniques = [];
@@ -24,31 +38,35 @@ const filterDuplicates = (arr) => {
   return onlyUniques;
 };
 
-const extractSubjectFields = (dictentries) => {
-  const all = [];
-  dictentries.forEach(dictEntry => {
-    dictEntry.subjectFields.forEach(subjectField => {
-      all.push(subjectField.termStr);
-    });
-  });
-  return all;
-};
+const isSelected = (selectedSubjectFields, subjectField) => (selectedSubjectFields.indexOf(subjectField) > -1);
 
 function SubjectFieldList(props) {
   const { dictentries, selectedSubjectFields, handleSubjectFieldToggle } = props;
-  const subjectFieldsInResults = filterDuplicates(extractSubjectFields(dictentries)).sort();
+
+  // Extract subjectFields from API response
+  const extractedSubjectFields = extractSubjectFields(dictentries);
+  // Merge with selectedSubjectFields
+  const mergedSubjectFields = selectedSubjectFields.concat(extractedSubjectFields);
+  // Filter duplicates and sort alphabetically
+  const sortedSubjectFields = filterDuplicates(mergedSubjectFields).sort();
+
+  // Only render label if contents
+  const label = (sortedSubjectFields.length > 0) ? (<p>Vakgebied</p>) : '';
   return (
-    <ul className="subjectfield-list">
-      {subjectFieldsInResults.map((subjectFieldInResult, i) => (
-          <SubjectFieldButton
-            active={(selectedSubjectFields.indexOf(subjectFieldInResult) > -1)}
-            key={i}
-            subjectField={subjectFieldInResult}
-            handleSubjectFieldToggle={handleSubjectFieldToggle}
-          />
-        )
-    )}
-    </ul>
+      <div>
+        {label}
+        <ul className="subjectfield-list">
+          {sortedSubjectFields.map((subjectField, i) => (
+              <SubjectFieldInput
+                active={isSelected(selectedSubjectFields, subjectField)}
+                key={i}
+                subjectField={subjectField}
+                handleSubjectFieldToggle={handleSubjectFieldToggle}
+              />
+            )
+        )}
+        </ul>
+    </div>
   );
 }
 
