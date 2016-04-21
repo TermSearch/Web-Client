@@ -23,6 +23,13 @@ export function toggleSubjectField(subjectField = '') {
   };
 }
 
+export function setSelectedSubjectFields(selectedSubjectFields = []) {
+  return {
+    type: types.SET_SELECTED_SUBJECTFIELDS,
+    selectedSubjectFields,
+  };
+}
+
 export function setDictentries(dictentries = []) {
   return {
     type: types.SET_DICTENTRIES,
@@ -49,7 +56,10 @@ export function fetchDictentries() {
 
     browserHistory.push({
       pathname: '/',
-      query: { term: term || undefined },
+      query: {
+        term: term || undefined,
+        selectedSubjectFields: selectedSubjectFields || undefined
+       },
     });
 
     search({ term, selectedSubjectFields }).then(dictentries => {

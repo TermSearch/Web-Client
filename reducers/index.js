@@ -33,6 +33,12 @@ export default function dictEntryListReducer(state = initialState, action) {
                         : [...state.selectedSubjectFields].concat([action.subjectField]),
       };
 
+    case types.SET_SELECTED_SUBJECTFIELDS:
+      return {
+        ...state,
+        selectedSubjectFields: action.selectedSubjectFields
+      }
+
     case types.SET_DICTENTRIES:
       return {
         ...state,

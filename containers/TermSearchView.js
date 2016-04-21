@@ -7,6 +7,7 @@ import {
   toggleSubjectField,
   setTerm,
   fetchDictentries,
+  setSelectedSubjectFields,
 } from '../actions';
 
 const propTypes = {
@@ -42,8 +43,9 @@ class TermSearchView extends Component {
     }
   }
 
-  fetchFromLocation({ query: { term } }) {
+  fetchFromLocation({ query: { term, selectedSubjectFields } }) {
     const { dispatch } = this.props;
+    dispatch(setSelectedSubjectFields(selectedSubjectFields));
     dispatch(setTerm(term));
     this.handleSearch();
   }
