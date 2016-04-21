@@ -61,6 +61,7 @@ class TermSearchView extends Component {
 
   render() {
     const { term, selectedSubjectFields, dictentries } = this.props;
+    // console.log('Term: '+term);
     return (
       <div className="app container">
         <div className="row input-row">
@@ -68,6 +69,7 @@ class TermSearchView extends Component {
             <LiveSearch
               handleSearch={this.handleSearch}
               selectedSubjectFields={selectedSubjectFields}
+              term={term}
             />
           </div>
         </div>
@@ -94,8 +96,8 @@ class TermSearchView extends Component {
 TermSearchView.propTypes = propTypes;
 TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ term, selectedSubjectFields, dictentries }) => ({
-  term,
+export default connect(({ selectedSubjectFields, dictentries, term }) => ({
   selectedSubjectFields,
-  dictentries
+  dictentries,
+  term
 }))(TermSearchView);

@@ -12,13 +12,11 @@ import {
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
   selectedSubjectFields: PropTypes.array,
-  term: PropTypes.string,
   liveSearchIsLoading: PropTypes.bool,
   suggestions: PropTypes.array,
 };
 
 const defaultProps = {
-  term: '',
   selectedSubjectFields: [],
   liveSearchIsLoading: false,
   suggestions: [],
@@ -28,7 +26,7 @@ const defaultProps = {
 /*    Utils    */
 /* ----------- */
 
-const debouncedSearch = debounce(liveSearch, 500);
+const debouncedSearch = debounce(liveSearch, 1000);
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {
@@ -58,25 +56,20 @@ class LiveSearch extends React.Component {
   }
 
   loadSuggestions(value) {
-    const { dispatch, selectedSubjectFields, term } = this.props;
+    const { dispatch, selectedSubjectFields } = this.props;
+
     // Start loading
     dispatch(liveSearchLoading(true));
+
     // Remove and escape unwanted characters
     const escapedValue = escapeRegexCharacters(value.trim());
+
     // Start API call
     debouncedSearch({ term: escapedValue, selectedSubjectFields })
       .then(dictentries => {
-        // console.log(dictentries);
-        // console.log(value);
-        // console.log(term);
-        dispatch(setSuggestions(dictentries));
-        if (value === term) {
-          dispatch(liveSearchLoading(false));
-          // Set suggestions to API results
-          // dispatch(setSuggestions(dictentries));
-        } else { // Ignore suggestions if input value changed
-          dispatch(liveSearchLoading(false));
-        }
+        // Ignore suggestions if input value has changed
+        if (value === this.props.term) dispatch(setSuggestions(dictentries));
+        dispatch(liveSearchLoading(false));
     });
   }
 
@@ -138,11 +131,9 @@ LiveSearch.propTypes = propTypes;
 LiveSearch.defaultProps = defaultProps;
 
 export default connect(({
-  term,
   liveSearchIsLoading,
   suggestions,
 }) => ({
-  term,
   liveSearchIsLoading,
   suggestions,
 }))(LiveSearch);
