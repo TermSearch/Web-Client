@@ -27,7 +27,7 @@ const defaultProps = {
 /*    Utils    */
 /* ----------- */
 
-const debouncedSearch = debounce(liveSearch, 1000);
+const debouncedSearch = debounce(liveSearch, 300);
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {

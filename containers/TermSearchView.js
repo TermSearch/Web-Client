@@ -46,7 +46,7 @@ class TermSearchView extends Component {
   fetchFromLocation({ query: { term, selectedSubjectFields } }) {
     const { dispatch } = this.props;
     // Convert selectedSubjectFields to array if string
-    if (selectedSubjectFields.constructor === String) selectedSubjectFields = [selectedSubjectFields];
+    if (selectedSubjectFields && selectedSubjectFields.constructor === String) selectedSubjectFields = [selectedSubjectFields];
     dispatch(setSelectedSubjectFields(selectedSubjectFields));
     dispatch(setTerm(term));
     this.handleSearch();
