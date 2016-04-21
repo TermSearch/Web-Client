@@ -43,25 +43,24 @@ class TermSearchView extends Component {
   }
 
   fetchFromLocation({ query: { term } }) {
-    this.handleSearch(term);
+    const { dispatch } = this.props;
+    dispatch(setTerm(term));
+    this.handleSearch();
   }
 
-  handleSearch(term) {
-    const { dispatch } = this.props;
-    // dispatch(setTerm(term));
-    // Only dispatch search query if term contains content
-    if (term) dispatch(fetchDictentries());
+  handleSearch() {
+    const { dispatch, term } = this.props;
+    dispatch(fetchDictentries())
   }
 
   handleSubjectFieldToggle(subjectField) {
     const { dispatch } = this.props;
     dispatch(toggleSubjectField(subjectField));
-    dispatch(fetchDictentries());
+    this.handleSearch();
   }
 
   render() {
     const { term, selectedSubjectFields, dictentries } = this.props;
-    // console.log('Term: '+term);
     return (
       <div className="app container">
         <div className="row input-row">

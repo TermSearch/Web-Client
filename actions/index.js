@@ -37,6 +37,12 @@ export function setSuggestions(suggestions = []) {
   };
 }
 
+export function clearAll() {
+  return {
+    type: types.CLEAR_ALL
+  };
+}
+
 export function fetchDictentries() {
   return (dispatch, getState) => {
     const { term, selectedSubjectFields } = getState();

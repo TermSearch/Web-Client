@@ -7,6 +7,7 @@ import {
   setTerm,
   liveSearchLoading,
   setSuggestions,
+  clearAll
 } from '../actions';
 
 const propTypes = {
@@ -52,6 +53,7 @@ class LiveSearch extends React.Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
     this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this);
   }
 
@@ -74,6 +76,7 @@ class LiveSearch extends React.Component {
   }
 
   onSuggestionSelected(event, { suggestionValue }) {
+    const { handleSearch, dispatch } = this.props;
     this.loadSuggestions(suggestionValue);
   }
 
@@ -81,19 +84,32 @@ class LiveSearch extends React.Component {
     this.loadSuggestions(value);
   }
 
-  onChange(event, { newValue }) {
-    const { dispatch } = this.props;
+  onChange(event, { newValue, method }) {
+    const { dispatch, handleSearch } = this.props;
     dispatch(setTerm(newValue));
+    if (method === 'click') handleSearch();
+  }
+
+  handleReset(event) {
+    event.preventDefault();
+    const { dispatch } = this.props;
+    // Reset search term
+    dispatch(clearAll());
   }
 
   onSubmit(event) {
-    const { handleSearch, term } = this.props;
     event.preventDefault();
-    handleSearch(term);
+    const { handleSearch } = this.props;
+    handleSearch();
   }
 
   render() {
-    const { term, selectedSubjectFields, liveSearchIsLoading, suggestions } = this.props;
+    const {
+      term,
+      selectedSubjectFields,
+      liveSearchIsLoading,
+      suggestions
+    } = this.props;
 
     const inputProps = {
       placeholder: "Vul hier een Duitse term in...",
@@ -115,6 +131,11 @@ class LiveSearch extends React.Component {
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
+          />
+          <span
+            id="searchclear"
+            className="glyphicon glyphicon-remove-circle"
+            onClick={this.handleReset}
           />
           <span className="input-group-btn">
             <button type="submit" className="btn btn-primary">

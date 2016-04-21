@@ -1,4 +1,5 @@
 export const SET_TERM = 'SET_TERM';
+export const CLEAR_ALL = 'CLEAR_ALL';
 export const TOGGLE_SUBJECTFIELD = 'TOGGLE_SUBJECTFIELD';
 export const SET_DICTENTRIES = 'SET_DICTENTRIES';
 export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';

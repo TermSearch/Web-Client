@@ -45,6 +45,15 @@ export default function dictEntryListReducer(state = initialState, action) {
         suggestions: action.suggestions,
       };
 
+    case types.CLEAR_ALL:
+      return {
+        ...state,
+        suggestion: [],
+        dictentries: [],
+        term: '',
+        liveSearchLoading: false
+      }
+
     default:
       return state;
 
