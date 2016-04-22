@@ -23,15 +23,13 @@ const defaultProps = {
   suggestions: [],
 };
 
-function getSuggestionValue(suggestion) {
-  return suggestion.de;
-}
+// For Autosuggest component
+const getSuggestionValue = suggestion => suggestion.de;
 
-function renderSuggestion(suggestion) {
-  return (
+// For Autosuggest component
+const renderSuggestion = suggestion => (
     <span>{suggestion.de}</span>
   );
-}
 
 class LiveSearch extends React.Component {
   constructor() {
