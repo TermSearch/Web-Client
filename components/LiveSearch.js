@@ -71,15 +71,14 @@ class LiveSearch extends React.Component {
   }
 
   handleReset(event) {
-    event.preventDefault();
     const { dispatch } = this.props;
-    // Reset search term
     dispatch(clearAll());
   }
 
   onSubmit(event) {
     event.preventDefault();
-    const { handleSearch } = this.props;
+    const { handleSearch, dispatch } = this.props;
+    dispatch(setSuggestions([])); // empty suggestions to hide them, a bit of a hack 
     handleSearch();
   }
 
