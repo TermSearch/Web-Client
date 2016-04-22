@@ -23,16 +23,6 @@ const defaultProps = {
   suggestions: [],
 };
 
-/* ----------- */
-/*    Utils    */
-/* ----------- */
-
-const debouncedSearch = debounce(liveSearch, 300);
-
-/* --------------- */
-/*    Component    */
-/* --------------- */
-
 function getSuggestionValue(suggestion) {
   return suggestion.de;
 }
@@ -59,7 +49,7 @@ class LiveSearch extends React.Component {
     dispatch(liveSearchLoading(true));
 
     // Start API call
-    debouncedSearch({ term: value, selectedSubjectFields })
+    liveSearch({ term: value, selectedSubjectFields })
       .then(dictentries => {
         // Ignore suggestions if input value has changed
         if (value === this.props.term) dispatch(setSuggestions(dictentries));

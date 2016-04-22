@@ -2,6 +2,7 @@
 // Term-Search live search api call
 //
 import escapeRegexChars from '../util/escapeRegexChars';
+import debounce from '../util/debounce';
 
 const DEBOUNCE_TIME = 300;
 const API_LIMIT = 20;
@@ -18,7 +19,7 @@ const limitResults = (dictentries) => {
   return dictentries.splice(0, RESULTS_LIMIT)
 }
 
-export default ({
+const liveSearch = ({
   term,
   selectedSubjectFields
 }) => {
@@ -34,3 +35,5 @@ export default ({
     .then(filterUniques)  // return only unique suggestions
     .then(limitResults) // limits number of returned results
 }
+
+export default debounce(liveSearch, DEBOUNCE_TIME);
