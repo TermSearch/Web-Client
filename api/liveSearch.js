@@ -1,6 +1,9 @@
 //
 // Term-Search live search api call
 //
+import escapeRegexChars from '../util/escapeRegexChars';
+
+const DEBOUNCE_TIME = 300;
 const API_LIMIT = 20;
 const API_SKIP = 0;
 const RESULTS_LIMIT = 10;
@@ -19,8 +22,9 @@ export default ({
   term,
   selectedSubjectFields
 }) => {
+  const escapedTerm = escapeRegexChars(term);
   const apiUrl = `${process.env.API_URL}/dictentries/liveSearch?`;
-  const queryString = `term=${term}&limit=${API_LIMIT}&skip=${API_SKIP}&subjectFields=${selectedSubjectFields}`;
+  const queryString = `term=${escapedTerm}&limit=${API_LIMIT}&skip=${API_SKIP}&subjectFields=${selectedSubjectFields}`;
   const url = apiUrl + queryString;
   return fetch(url, {
       method: 'get'

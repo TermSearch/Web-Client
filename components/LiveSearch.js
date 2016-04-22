@@ -29,11 +29,6 @@ const defaultProps = {
 
 const debouncedSearch = debounce(liveSearch, 300);
 
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-function escapeRegexCharacters(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 /* --------------- */
 /*    Component    */
 /* --------------- */
@@ -63,11 +58,8 @@ class LiveSearch extends React.Component {
     // Start loading
     dispatch(liveSearchLoading(true));
 
-    // Remove and escape unwanted characters
-    const escapedValue = escapeRegexCharacters(value.trim());
-
     // Start API call
-    debouncedSearch({ term: escapedValue, selectedSubjectFields })
+    debouncedSearch({ term: value, selectedSubjectFields })
       .then(dictentries => {
         // Ignore suggestions if input value has changed
         if (value === this.props.term) dispatch(setSuggestions(dictentries));
