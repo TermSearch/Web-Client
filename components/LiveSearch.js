@@ -78,7 +78,7 @@ class LiveSearch extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const { handleSearch, dispatch } = this.props;
-    dispatch(setSuggestions([])); // empty suggestions to hide them, a bit of a hack 
+    dispatch(setSuggestions([])); // empty suggestions to hide them, a bit of a hack
     handleSearch();
   }
 
@@ -91,7 +91,7 @@ class LiveSearch extends React.Component {
     } = this.props;
 
     const inputProps = {
-      placeholder: "Vul hier een Duitse term in...",
+      placeholder: "Begin met typen",
       value: term,
       onChange: this.onChange
     };
@@ -100,9 +100,9 @@ class LiveSearch extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <div className="status">
+        {/* <div className="status">
           <strong>Status:</strong> {status}
-        </div>
+        </div> */}
         <div className="input-group">
           <Autosuggest
             suggestions={suggestions}

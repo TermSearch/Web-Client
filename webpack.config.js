@@ -45,6 +45,10 @@ const common = {
         // Include accepts either a path or an array of paths.
         include: PATHS.app,
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        loader: 'url-loader?limit=10000',
+      },
     ],
   },
 };

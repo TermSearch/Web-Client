@@ -1,5 +1,5 @@
 .app {
-  margin: 40px auto;
+  margin: 30px auto;
   max-width: 1000px;
 }
 
@@ -7,11 +7,10 @@
   margin-bottom: 30px;
 }
 
-/*#search-input {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}*/
+.logo-image {
+  height: 30px;
+  width: 30px;
+}
 
 ul.term-list, ul.subjectfield-list {
   list-style: none;

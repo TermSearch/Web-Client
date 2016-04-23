@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import LiveSearch from '../components/LiveSearch';
 import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';
+import Logo from '../components/Logo.js';
+
 import {
   toggleSubjectField,
   setTerm,
@@ -68,7 +70,10 @@ class TermSearchView extends Component {
     return (
       <div className="app container">
         <div className="row input-row">
-          <div className="col-sm-8 col-sm-offset-4">
+          <div className="col-sm-4 col-xs-2">
+            <Logo />
+          </div>
+          <div className="col-sm-8 col-xs-10">
             <LiveSearch
               handleSearch={this.handleSearch}
               selectedSubjectFields={selectedSubjectFields}
