@@ -46,9 +46,10 @@ const common = {
         include: PATHS.app,
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        loader: 'url-loader?limit=10000',
-      },
+        test: /\.(jpg|png)$/,
+        loader: 'file?name=[path][name].[hash].[ext]',
+        include: PATHS.images
+      }
     ],
   },
 };
