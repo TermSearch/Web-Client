@@ -1,6 +1,8 @@
-//
-// Term-Search search api call
-//
+/*  Term-Search search api call
+    TODO: Add response time to response
+    TODO: Speedup response time < 300ms?
+    TODO: Add Fulltext search results?
+*/
 import escapeRegexChars from '../util/escapeRegexChars';
 const LIMIT = 20;
 const SKIP = 0;

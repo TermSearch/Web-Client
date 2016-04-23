@@ -27,9 +27,12 @@ const defaultProps = {
 const getSuggestionValue = suggestion => suggestion.de;
 
 // For Autosuggest component
+/*
+  TODO: Update appearance suggestions, see Google?
+*/
 const renderSuggestion = suggestion => (
     <span>{suggestion.de}</span>
-  );
+);
 
 class LiveSearch extends React.Component {
   constructor() {
@@ -42,6 +45,10 @@ class LiveSearch extends React.Component {
 
   loadSuggestions(value) {
     const { dispatch, selectedSubjectFields } = this.props;
+
+    /*
+      TODO: Add filter on current suggestions if liveSearchLoading = true
+    */
 
     // Start loading
     dispatch(liveSearchLoading(true));
@@ -96,13 +103,16 @@ class LiveSearch extends React.Component {
       onChange: this.onChange
     };
 
-    const status = (liveSearchIsLoading ? 'bezig...' : 'vul iets in voor suggesties');
+    // const status = (liveSearchIsLoading ? 'bezig...' : 'vul iets in voor suggesties');
 
     return (
       <form onSubmit={this.onSubmit}>
-        {/* <div className="status">
+        {/*
+          TODO: Create a spinner instead of this
+          <div className="status">
           <strong>Status:</strong> {status}
-        </div> */}
+        </div>
+        */}
         <div className="input-group">
           <Autosuggest
             suggestions={suggestions}

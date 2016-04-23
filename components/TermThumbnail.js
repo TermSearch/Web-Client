@@ -8,6 +8,10 @@ const propTypes = {
 
 function TermThumbnail({ term, translation, subjectFields }) {
   return (
+    /*
+      TODO: Add links to static pages
+      TODO: Appearance static search results term-search.nl
+    */
     <div className="term-thumbnail">
       <h6>
         {term}
