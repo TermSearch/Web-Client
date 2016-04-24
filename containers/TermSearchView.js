@@ -66,14 +66,14 @@ class TermSearchView extends Component {
   }
 
   render() {
+    /*
+      TODO: Add footer
+      TODO: Better columns on medium devices
+    */
     const { term, selectedSubjectFields, dictentries } = this.props;
     return (
       <div className="app container">
         <div className="row input-row">
-          {
-            // TODO: Move logo into same column as LiveSearch
-            // TODO: LiveSearch 8 columns?
-          }
           <div className="col-sm-8">
             <LiveSearch
               handleSearch={this.handleSearch}
