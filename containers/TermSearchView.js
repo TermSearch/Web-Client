@@ -74,10 +74,7 @@ class TermSearchView extends Component {
             // TODO: Move logo into same column as LiveSearch
             // TODO: LiveSearch 8 columns?
           }
-          <div className="col-sm-4 col-xs-2">
-            <Logo />
-          </div>
-          <div className="col-sm-8 col-xs-10">
+          <div className="col-sm-8">
             <LiveSearch
               handleSearch={this.handleSearch}
               selectedSubjectFields={selectedSubjectFields}
@@ -86,19 +83,14 @@ class TermSearchView extends Component {
           </div>
         </div>
         <div className="row results-row">
-          {
-            // TODO: Move SubjectFieldList to right side
-          }
+          <div className="col-sm-8">
+            <DictentryList dictentries={dictentries} />
+          </div>
           <div className="col-sm-4">
             <SubjectFieldList
               selectedSubjectFields={selectedSubjectFields}
               dictentries={dictentries}
               handleSubjectFieldToggle={this.handleSubjectFieldToggle}
-            />
-          </div>
-          <div className="col-sm-8">
-            <DictentryList
-              dictentries={dictentries}
             />
           </div>
         </div>

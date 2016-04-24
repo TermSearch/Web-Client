@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Autosuggest from 'react-autosuggest'; // see async example: http://codepen.io/moroshko/pen/EPZpev
+import Logo from './Logo.js';
 import liveSearch from '../api/liveSearch';
 import debounce from '../util/debounce';
 import { connect } from 'react-redux';
@@ -114,6 +115,7 @@ class LiveSearch extends React.Component {
         </div>
         */}
         <div className="input-group">
+          <Logo />
           <Autosuggest
             suggestions={suggestions}
             onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}

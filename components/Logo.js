@@ -3,7 +3,7 @@ import logoImage from '../assets/images/TERM-SEARCH-LOGO.png';
 
 function Logo() {
   return (
-    <span>
+    <span className="input-group-btn logo">
       <a href="/">
         <img src={logoImage} className="logo-image" alt="Logo Term Search"/>
       </a>
