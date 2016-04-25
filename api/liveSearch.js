@@ -26,7 +26,6 @@ const liveSearch = ({
   /*
     TODO: Add caching for terms, see: http://codepen.io/moroshko/pen/JGEmeX
   */
-
   const escapedTerm = escapeRegexChars(term);
   const apiUrl = `${process.env.API_URL}/dictentries/liveSearch?`;
   const queryString = `term=${escapedTerm}&limit=${API_LIMIT}&skip=${API_SKIP}&subjectFields=${selectedSubjectFields}`;

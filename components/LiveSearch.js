@@ -86,15 +86,14 @@ class LiveSearch extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const { handleSearch, dispatch } = this.props;
-    /* empty suggestions to hide them, a bit of a HACK */
+    /*
+      HACK: empty suggestions to hide them
+    */
     dispatch(setSuggestions([]));
     handleSearch();
   }
 
   render() {
-    /*
-      FIXME: Do not load results on startup/empty
-    */
     const {
       term,
       selectedSubjectFields,

@@ -62,7 +62,8 @@ export function fetchDictentries() {
        },
     });
 
-    search({ term, selectedSubjectFields }).then(dictentries => {
+    // Only query when term has a search string
+    if (term.length > 1) search({ term, selectedSubjectFields }).then(dictentries => {
       dispatch(setDictentries(dictentries));
     });
   };

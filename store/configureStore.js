@@ -5,7 +5,7 @@ import reducer from '../reducers';
 
 const createStoreWithMiddleware = applyMiddleware(
   thunk,
-  createLogger() // Disable in production
+  createLogger() /* TODO: Disable logging in production */
 )(createStore);
 
 export default function configureStore(initialState) {
