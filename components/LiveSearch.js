@@ -48,7 +48,8 @@ class LiveSearch extends React.Component {
     const { dispatch, selectedSubjectFields, liveSearchIsLoading, suggestions } = this.props;
 
     /*
-      TODO: If form submitted live search dispatch for setSuggestions should be cancelled
+      TODO: If form submitted, then live search dispatch for setSuggestions should be cancelled or suggestions should be hidden.
+            Maybe use isCollapsed={true} with a Redux value?
     */
 
     // Is liveSearchIsLoading then filter current sugggestions

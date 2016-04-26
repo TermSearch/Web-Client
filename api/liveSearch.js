@@ -4,7 +4,7 @@
 import escapeRegexChars from '../util/escapeRegexChars';
 import debounce from '../util/debounce';
 
-const DEBOUNCE_TIME = 3000;
+const DEBOUNCE_TIME = 200;
 const API_LIMIT = 20;
 const API_SKIP = 0;
 const RESULTS_LIMIT = 10;
