@@ -45,11 +45,18 @@ class LiveSearch extends React.Component {
   }
 
   loadSuggestions(value) {
-    const { dispatch, selectedSubjectFields } = this.props;
+    const { dispatch, selectedSubjectFields, liveSearchIsLoading, suggestions } = this.props;
 
     /*
-      TODO: Add filter on current suggestions if liveSearchLoading = true
+      TODO: If form submitted live search dispatch for setSuggestions should be cancelled
     */
+
+    // Is liveSearchIsLoading then filter current sugggestions
+    if (liveSearchIsLoading) {
+      const regex = new RegExp('^' + value, 'i');
+      const filteredSuggestions = suggestions.filter(suggestion => regex.test(suggestion.de));
+      dispatch(setSuggestions(filteredSuggestions));
+    }
 
     // Start loading
     dispatch(liveSearchLoading(true));

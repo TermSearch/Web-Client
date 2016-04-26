@@ -17,9 +17,6 @@ const defaultProps = {
 const getSubjectFields = (subjectFields) => subjectFields.map(sf => sf.termStr);
 
 function DictentryList({ dictentries }) {
-  /*
-    TODO: Search results for same dictentry.de should be merged, see static implementation
-  */
   return (
     <ul className="term-list">
       {dictentries.map(dictentry => (
