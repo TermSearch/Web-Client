@@ -29,7 +29,7 @@ const getSuggestionValue = suggestion => suggestion.de;
 
 // For Autosuggest component
 /*
-  TODO: Update appearance suggestions, see Google?
+  TODO: Update how suggestions look, see Google for inspiration?
 */
 const renderSuggestion = suggestion => (
     <span>{suggestion.de}</span>

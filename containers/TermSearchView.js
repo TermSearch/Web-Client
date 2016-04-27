@@ -69,7 +69,7 @@ class TermSearchView extends Component {
     /*
       TODO: Add footer
       TODO: Better columns on medium devices
-      TODO: Add nothing found message
+      TODO: Adapt terms layout to term-search static
     */
     const { term, selectedSubjectFields, dictentries } = this.props;
     return (
