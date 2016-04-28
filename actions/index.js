@@ -63,8 +63,14 @@ export function fetchDictentries() {
     });
 
     // Only query when term has a search string
-    if (term.length > 1) search({ term, selectedSubjectFields }).then(dictentries => {
-      dispatch(setDictentries(dictentries));
-    });
+    if (term.length > 0) search({ term, selectedSubjectFields })
+      .then(results => {
+        // TODO: Move this to seach results view, tiny letters above footer
+        console.log("Query time: "+results.queryTime+" ms");
+        return results.dictentries;
+      })
+      .then(dictentries => {
+        dispatch(setDictentries(dictentries));
+      });
   };
 }

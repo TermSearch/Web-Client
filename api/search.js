@@ -12,6 +12,9 @@ export default ({
   term,
   selectedSubjectFields
 }) => {
+
+  const startTime = new Date();
+
   const escapedTerm = escapeRegexChars(term);
   const apiUrl = `${process.env.API_URL}/dictentries/startsWith?`;
   const queryString = `term=${escapedTerm}&limit=${LIMIT}&skip=${SKIP}&subjectFields=${selectedSubjectFields}`;
@@ -20,5 +23,11 @@ export default ({
       method: 'get'
     })
     .then(res => res.json())
-    .then(json => json.results.dictentries || []); // should return an empty array if not found
+    .then(json => {
+      const queryTime = new Date() - startTime;
+      return {
+        queryTime,
+        dictentries: json.results.dictentries || [] // should return an empty array if not found
+      }
+    }); 
 };
