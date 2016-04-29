@@ -110,7 +110,7 @@ class LiveSearch extends React.Component {
     } = this.props;
 
     const inputProps = {
-      placeholder: "Begin met typen",
+      // placeholder: "Begin met typen",
       value: term,
       onChange: this.onChange
     };
