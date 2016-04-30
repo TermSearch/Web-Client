@@ -2,11 +2,20 @@ import React, { PropTypes } from 'react';
 
 const propTypes = {
   term: PropTypes.string,
-  translation: PropTypes.string,
-  subjectFields: PropTypes.string,
+  translations: PropTypes.array,
+  subjectFields: PropTypes.array,
 };
 
-function TermThumbnail({ term, translation, subjectFields }) {
+const renderTranslation = (translation, i) => (
+  <span className="translation" key={i}>
+    <b> {i+1}</b> {translation}
+  </span>
+)
+
+// Returns an array of subjectfield strings
+const getSubjectFields = (subjectFields) => subjectFields.map(sf => sf.termStr);
+
+function TermThumbnail({ term, translations, subjectFields }) {
   return (
     /*
       TODO: Add links to static pages
@@ -15,8 +24,8 @@ function TermThumbnail({ term, translation, subjectFields }) {
     <div className="term-thumbnail">
       <h6>
         {term}
-        <span className="translation"> {translation}</span>
-        <span className="subjectfield"> {subjectFields}</span>
+        {translations.map(renderTranslation)}
+        <span className="subjectfield"> {getSubjectFields(subjectFields).join(', ')}</span>
       </h6>
     </div>
   );

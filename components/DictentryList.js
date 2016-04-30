@@ -13,9 +13,6 @@ const defaultProps = {
   dictentries: [],
 };
 
-// Returns an array of subjectfield strings
-const getSubjectFields = (subjectFields) => subjectFields.map(sf => sf.termStr);
-
 const noResults = () => (
     <div>
       <h5>Geen zoekresultaten</h5>
@@ -36,8 +33,8 @@ function DictentryList({ dictentries }) {
           <li key={dictentry.id}>
             <TermThumbnail
               term={dictentry.de}
-              translation={dictentry.nl.join(', ')}
-              subjectFields={getSubjectFields(dictentry.subjectFields).join(', ')}
+              translations={dictentry.nl}
+              subjectFields={dictentry.subjectFields}
             />
           </li>
         ))}

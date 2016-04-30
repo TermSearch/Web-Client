@@ -1,7 +1,6 @@
 /*  Term-Search search api call
     TODO: Speedup response time < 300ms for API
     TODO: Add Fulltext search results?
-    TODO: Search results for same dictentry.de should be merged, see static implementation
 */
 import escapeRegexChars from '../util/escapeRegexChars';
 const LIMIT = 20;
@@ -11,6 +10,7 @@ const SKIP = 0;
 // TODO: Move to lib
 // TODO: Use same function for webclient as well
 // TODO: Write tests for this function
+// TODO: Also remove duplicate nl translations here?
 const mergeDuplicates = (dictEntries) => {
 	const onlyUniques = [];
 	dictEntries.forEach((entry) => {
