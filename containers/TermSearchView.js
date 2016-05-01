@@ -75,9 +75,9 @@ class TermSearchView extends Component {
     */
     const { term, selectedSubjectFields, dictentries } = this.props;
     return (
-      <div className="app container">
-        <div className="row input-row">
-          <div className="col-sm-8">
+      <div className="app container-fluid">
+        <div className="row search-row">
+          <div className="col-sm-8 search-bar">
             <LiveSearch
               handleSearch={this.handleSearch}
               selectedSubjectFields={selectedSubjectFields}

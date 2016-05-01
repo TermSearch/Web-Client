@@ -1,28 +1,44 @@
 /*
-  TODO: Clean up CSS
-*/
+  /*background-color: #2196F3; /* normal blue */
+  /*background-color: #008EFF; /* darker blue */
+  /*background-color: #FF9A00; /* normal orange */
+  /*background-color: #FFA419; /* bright orange */
+  /*background-color: #B26C00; /* dark orange */
+  /*TODO: Clean up CSS*/
+
+body {
+  border-top: solid #008EFF;
+  background-color: rgb(252, 252, 252);
+}
 
 .app {
-  margin: 30px auto;
+  margin: 0 10px;
+  padding: 0;
   max-width: 1000px;
+  /*background-color: yellow;*/
 }
 
-.input-row {
+.search-row {
   margin-bottom: 10px;
+  border-bottom: 1px dotted #ccc;
 }
 
-.logo {
-  padding-top: 5px;
-  padding-right: 10px;
+.search-bar {
+  /*background-color: red;*/
+  margin: 20px 0px;
+  padding-bottom: 5px;
+
+}
+
+.logo-container {
+  /*background-color: purple;*/
+  margin: 0;
+  padding-left: 0;
 }
 
 .logo-image {
-  height: 30px;
-  width: 30px;
-}
-
-.results-row {
-  padding: 5px 0px;
+  height: 50px;
+  width: 50px;
 }
 
 ul.term-list, ul.subjectfield-list {
@@ -68,6 +84,8 @@ ul.term-list li {
 }
 
 .react-autosuggest__container {
+  /*background-color: blue;*/
+  margin: 7px 0 0 20px;
   position: relative;
 }
 
