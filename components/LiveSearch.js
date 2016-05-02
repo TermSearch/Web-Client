@@ -135,7 +135,7 @@ class LiveSearch extends React.Component {
             inputProps={inputProps}
           />
           <span
-            id="searchclear"
+            id="clear-search-button"
             className="glyphicon glyphicon-remove-circle"
             onClick={this.handleReset}
           />
