@@ -53,8 +53,10 @@ function SubjectFieldList(props) {
   // Only render label if contents
   const label = (sortedSubjectFields.length > 0) ? (<h6>Vakgebied</h6>) : '';
   return (
-      <div>
-        {label}
+      <div className="subjectfield-container">
+        <div className="subjectfield-label">
+          {label}
+        </div>
         <ul className="subjectfield-list">
           {sortedSubjectFields.map((subjectField, i) => (
               <SubjectFieldInput

@@ -123,11 +123,11 @@ body {
 
 /*
 
-  TERMS
+  RESULTS:TERMS
 
 */
 
-ul.term-list, ul.subjectfield-list {
+ul.term-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -155,4 +155,35 @@ ul.term-list li {
   font-size: 60%;
   font-weight: normal;
   font-style: italic;
+}
+
+/*
+
+  RESULTS:SUBJECTFIELDS
+
+*/
+
+.subjectfield-container {
+  /*background-color: yellow;*/
+  padding: 0;
+  margin: 5px 0;
+  border-radius: 3px;
+  border: 1px dotted #aaa;
+}
+
+.subjectfield-label {
+  background-color: #F1F1F1;
+  padding: 5px 15px;
+  border-bottom: 1px dotted #aaa;
+}
+
+.subjectfield-label h6 {
+  font-weight: bold;
+  color: #111;
+}
+
+.subjectfield-list {
+  margin: 10px 15px;
+  list-style: none;
+  padding: 0;
 }
