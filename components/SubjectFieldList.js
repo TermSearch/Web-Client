@@ -50,12 +50,13 @@ function SubjectFieldList(props) {
   // Filter duplicates and sort alphabetically
   const sortedSubjectFields = filterDuplicates(mergedSubjectFields).sort();
 
-  // Only render label if contents
-  const label = (sortedSubjectFields.length > 0) ? (<h6>Vakgebied</h6>) : '';
+  // Return empty div if no content
+  if (sortedSubjectFields.length <= 0) return ( <div/>);
+
   return (
       <div className="subjectfield-container">
         <div className="subjectfield-label">
-          {label}
+          <h6>Vakgebied</h6>
         </div>
         <ul className="subjectfield-list">
           {sortedSubjectFields.map((subjectField, i) => (

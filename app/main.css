@@ -127,6 +127,11 @@ body {
 
 */
 
+.results-row {
+  /*margin: 0 0 0 55px;*/
+  /*background-color: yellow;*/
+}
+
 ul.term-list {
   list-style: none;
   margin: 0;
