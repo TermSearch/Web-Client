@@ -5,6 +5,7 @@ const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // Load *package.json* so we can use `dependencies` from there
 const pkg = require('./package.json');
@@ -40,12 +41,6 @@ const common = {
         include: __dirname,
       },
       {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        // Include accepts either a path or an array of paths.
-        include: PATHS.app,
-      },
-      {
         test: /\.(jpg|png)$/,
         loader: 'file?name=[path][name].[hash].[ext]',
         include: PATHS.images
@@ -74,6 +69,16 @@ if (TARGET === 'start' || !TARGET) {
       port: process.env.PORT,
 
     },
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: ['style', 'css'],
+          // Include accepts either a path or an array of paths.
+          include: PATHS.app,
+        },
+      ],
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"development"',
@@ -97,7 +102,16 @@ if (TARGET === 'build' || TARGET === 'stats') {
       filename: '[name].[chunkhash].js',
       chunkFilename: '[chunkhash].js',
     },
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        }
+      ]
+    },
     plugins: [
+      new ExtractTextPlugin('[name].[chunkhash].css'),
       new CleanWebpackPlugin([PATHS.dist]),
       new ManifestPlugin(),
       new webpack.ProvidePlugin({
