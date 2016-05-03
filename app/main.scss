@@ -1,14 +1,31 @@
-  /*background-color: #2196F3;  normal blue */
-  /*background-color: #008EFF;  darker blue */
-  /*background-color: #FF9A00; normal orange */
-  /*background-color: #FFA419; bright orange */
-  /*background-color: #B26C00; dark orange */
-  /*TODO: Clean up CSS*/
-  /*TODO: Use SASS with constants*/
+
+// COLORS
+
+// Set color variables
+$normal_blue: #2196F3;
+$darker_blue: #008EFF;
+
+$normal_orange: #FF9A00;
+$bright_orange: #FFA419;
+$dark_orange: #B26C00;
+
+$almost_white: rgb(252, 252, 252);
+$light_grey: #F1F1F1;
+$dark_grey: #aaa;
+$almost_black: #444444;
+
+// Set functional color variables
+$text_color: $almost_black;
+$document_background_accented: $light_grey;
+$top_bar_color: $darker_blue;
+$document_background_color: $almost_white;
+$border_color: $dark_grey;
+
+// DOCUMENT
 
 body {
-  border-top: solid #008EFF;
-  background-color: rgb(252, 252, 252); /* background white */
+  border-top: solid $top_bar_color;
+  background-color: document_background_color;
 }
 
 .app {
@@ -18,25 +35,19 @@ body {
   /*background-color: yellow;*/
 }
 
-/*
-
-  SEARCH INPUT
-
-*/
+// SEARCH INPUT
 
 .search-row {
   margin-bottom: 10px;
-  border-bottom: 1px dotted #ccc;
+  border-bottom: 1px dotted $border_color;
 }
 
 .search-bar {
-  /*background-color: red;*/
   margin: 20px 0px 15px 0px;
   padding-bottom: 5px;
 }
 
 .logo-container {
-  /*background-color: purple;*/
   margin: 0;
   padding-left: 0;
 }
@@ -58,17 +69,13 @@ body {
   color: #ccc;
 }
 
-/*
-
-  AUTOSUGGEST
-
-*/
+// AUTOSUGGEST
 
 .react-autosuggest__container {
-  background-color: #F1F1F1;
+  background-color: $document_background_accented;
   margin: 7px 0 0 20px;
   position: relative;
-  border: 1px solid #aaa;
+  border: 1px solid $border_color;
 }
 
 .react-autosuggest__input {
@@ -101,8 +108,8 @@ body {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  border: 1px solid #aaa;
-  background-color: rgb(252, 252, 252);
+  border: 1px solid $border_color;
+  background-color: $document_background_color;
   font-family: Helvetica, sans-serif;
   font-weight: 300;
   font-size: 16px;
@@ -117,18 +124,13 @@ body {
 }
 
 .react-autosuggest__suggestion--focused {
-  background-color: #ddd;
+  background-color: $document_background_accented;
 }
 
-/*
-
-  RESULTS:TERMS
-
-*/
+// RESULTS:TERMS
 
 .results-row {
-  /*margin: 0 0 0 55px;*/
-  /*background-color: yellow;*/
+  // margin: 0 0 0 55px;
 }
 
 ul.term-list {
@@ -139,13 +141,13 @@ ul.term-list {
 
 ul.term-list li {
   border-radius: 3px;
-  background-color: #eee;
+  background-color: $document_background_accented;
   padding: 7px;
   margin: 5px 0;
 }
 
 .term-thumbnail h4 {
-  color: #555;
+  color: $text_color;
 }
 
 .term-thumbnail .translation {
@@ -172,18 +174,18 @@ ul.term-list li {
   padding: 0;
   margin: 5px 0;
   border-radius: 3px;
-  border: 1px dotted #aaa;
+  border: 1px dotted $border_color;
 }
 
 .subjectfield-label {
-  background-color: #F1F1F1;
+  background-color: $document_background_accented;
   padding: 5px 15px;
-  border-bottom: 1px dotted #aaa;
+  border-bottom: 1px dotted $border_color;
 }
 
 .subjectfield-label h6 {
   font-weight: bold;
-  color: #111;
+  color: $text_color;
 }
 
 .subjectfield-list {

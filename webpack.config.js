@@ -41,6 +41,10 @@ const common = {
         include: __dirname,
       },
       {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },
+      {
         test: /\.(jpg|png)$/,
         loader: 'file?name=[path][name].[hash].[ext]',
         include: PATHS.images
