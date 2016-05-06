@@ -68,7 +68,7 @@ class LiveSearch extends React.Component {
         // Ignore suggestions if input value has changed
         if (value === this.props.term) dispatch(setSuggestions(dictentries));
         dispatch(liveSearchLoading(false));
-    });
+      });
   }
 
   onSuggestionSelected(event, { suggestionValue }) {

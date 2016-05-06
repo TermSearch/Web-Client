@@ -26,7 +26,8 @@
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "redux": "^3.3.0",
-    "redux-thunk": "^1.0.3"
+    "redux-thunk": "^1.0.3",
+    "jquery": "^2.2.3"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
