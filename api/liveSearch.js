@@ -26,49 +26,32 @@ const liveSearch = ({
 }) => {
   /*
     TODO: Add caching for terms, see: http://codepen.io/moroshko/pen/JGEmeX
-    TODO: Switch to jquery?
     TODO: Catch errors if API not available
   */
   const startTime = new Date();
   const escapedTerm = escapeRegexChars(term);
   const apiUrl = `${process.env.API_URL}/dictentries/liveSearch?`;
-  const queryString = `term=${escapedTerm}&limit=${API_LIMIT}&skip=${API_SKIP}&subjectFields=${selectedSubjectFields}`;
-  const url = apiUrl + queryString;
 
   return $.ajax({
-     url: apiUrl,
-     data: {
-       term: escapedTerm,
-       limit: API_LIMIT,
-       skip: API_SKIP,
-       subjectFields: selectedSubjectFields,
-       format: 'json'
-     },
-     dataType: 'json',
-     type: 'GET'
-  }).then(json => {
-      // TODO: Remove in production after optimisation
-      console.log("Live query time: " + (new Date() - startTime) + " ms");
-      return json
+      url: apiUrl,
+      data: {
+        term: escapedTerm,
+        limit: API_LIMIT,
+        skip: API_SKIP,
+        subjectFields: selectedSubjectFields,
+        format: 'json'
+      },
+      dataType: 'json',
+      type: 'GET'
     })
-    .then(json => json.results.dictentries || []) // should return an empty array if not found
-    .then(filterUniques)  // return only unique suggestions
-    .then(limitResults); // limits number of returned results
-
-
-  return fetch(url, {
-      method: 'get'
-    })
-    .then(res => res.json())
     .then(json => {
       // TODO: Remove in production after optimisation
       console.log("Live query time: " + (new Date() - startTime) + " ms");
       return json
     })
     .then(json => json.results.dictentries || []) // should return an empty array if not found
-    .then(filterUniques)  // return only unique suggestions
+    .then(filterUniques) // return only unique suggestions
     .then(limitResults); // limits number of returned results
-
 }
 
 export default debounce(liveSearch, DEBOUNCE_TIME);
