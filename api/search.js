@@ -1,5 +1,4 @@
 /*  Term-Search search api call
-    TODO: Speedup response time < 300ms for API
     TODO: Add Fulltext search results?
 */
 

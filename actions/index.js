@@ -64,6 +64,10 @@ export function fetchDictentries() {
 
     // Only query when term has a search string
     if (term.length > 0) search({ term, selectedSubjectFields })
+      .fail( err => {
+        // TODO: Create an alert with bootstrap alert: http://www.bootply.com/4FSUjc2qej
+        alert("An API error has occured:\n\n "+JSON.stringify(err, null, 4))
+      })
       .then(results => {
         // TODO: Move this to seach results view, tiny letters above footer
         console.log("Query time: "+results.queryTime+" ms");

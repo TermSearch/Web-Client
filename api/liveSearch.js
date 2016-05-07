@@ -26,7 +26,6 @@ const liveSearch = ({
 }) => {
   /*
     TODO: Add caching for terms, see: http://codepen.io/moroshko/pen/JGEmeX
-    TODO: Catch errors if API not available
   */
   const startTime = new Date();
   const escapedTerm = escapeRegexChars(term);

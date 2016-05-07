@@ -91,7 +91,7 @@ if (TARGET === 'start' || !TARGET) {
       }),
       new webpack.HotModuleReplacementPlugin(),
       new NpmInstallPlugin({
-        save: true, // --save
+        save: true,
       }),
     ],
   });
