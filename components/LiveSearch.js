@@ -28,9 +28,6 @@ const defaultProps = {
 const getSuggestionValue = suggestion => suggestion.de;
 
 // For Autosuggest component
-/*
-  TODO: Update how suggestions look, see Google for inspiration?
-*/
 const renderSuggestion = suggestion => (
     <span>{suggestion.de}</span>
 );
@@ -120,7 +117,7 @@ class LiveSearch extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         {/*
-          TODO: Create a spinner instead of this
+          TODO: Create a progress bar instead of this
           <div className="status">
           <strong>Status:</strong> {status}
         </div>
