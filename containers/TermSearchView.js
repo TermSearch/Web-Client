@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import LiveSearch from '../components/LiveSearch';
 import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';
-import Logo from '../components/Logo.js';
+import Logo from '../components/Logo';
+import Footer from '../components/Footer';
 
 import {
   toggleSubjectField,
@@ -95,6 +96,7 @@ class TermSearchView extends Component {
             />
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

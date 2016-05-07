@@ -29,7 +29,7 @@ body {
 }
 
 .app {
-  margin: 0 10px;
+  margin: 5px 20px;
   padding: 0;
   max-width: 1000px;
 }
@@ -128,7 +128,8 @@ body {
 // RESULTS:TERMS
 
 .results-row {
-  // margin: 0 0 0 55px;
+  margin: 0 20px 30px 55px;
+  min-height: 300px;
 }
 
 ul.term-list {
@@ -185,4 +186,31 @@ ul.term-list li {
   margin: 10px 15px;
   list-style: none;
   padding: 0;
+}
+
+// FOOTER
+
+footer {
+  margin-top: 20px 0 0 0;
+  border-top: 1px dotted #ccc;
+  padding: 10px 0 50px 0;
+  font-size: 13px;
+}
+
+footer ul {
+  margin: 0 0 20px 0;
+}
+
+footer li {
+  display: inline;
+  margin-right: 1em;
+}
+
+footer p {
+  color: #666666;
+  margin: 0 0 3px 0;
+}
+
+.red {
+  color: red;
 }
