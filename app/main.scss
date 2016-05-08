@@ -29,9 +29,15 @@ body {
 }
 
 .app {
-  margin: 5px 20px;
-  padding: 0;
+  padding: 5px 20px;
   max-width: 1000px;
+}
+
+// Less white space for mobile screens
+@media (max-width: 768px) {
+  .app {
+    padding: 5px 10px;
+  }
 }
 
 // SEARCH INPUT
@@ -42,6 +48,7 @@ body {
 }
 
 .search-bar {
+  // background-color: blue;
   margin: 20px 0px 15px 0px;
   padding-bottom: 5px;
 }
@@ -58,7 +65,7 @@ body {
 
 #clear-search-button {
   position: absolute;
-  right: 55px;
+  right: 60px;
   top: 0;
   bottom: 0;
   height: 14px;
@@ -127,9 +134,17 @@ body {
 
 // RESULTS:TERMS
 
-.results-row {
-  margin: 0 20px 30px 55px;
+.results {
+  padding: 0 20px 30px 80px;
   min-height: 300px;
+}
+
+// Less white space for mobile screens
+@media (max-width: 768px) {
+  .results {
+    padding: 0 10px 10px 10px;
+    min-height: 200px;
+  }
 }
 
 ul.term-list {

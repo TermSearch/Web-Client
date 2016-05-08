@@ -74,7 +74,7 @@ class TermSearchView extends Component {
     */
     const { term, selectedSubjectFields, dictentries } = this.props;
     return (
-      <div className="app container-fluid">
+      <div className="container-fluid app">
         <div className="row search-row">
           <div className="col-sm-8 search-bar">
             <LiveSearch
@@ -84,8 +84,8 @@ class TermSearchView extends Component {
             />
           </div>
         </div>
-        <div className="row results-row">
-          <div className="col-sm-8">
+        <div className="row">
+          <div className="col-sm-8 results">
             <DictentryList dictentries={dictentries} />
           </div>
           <div className="col-sm-4">
