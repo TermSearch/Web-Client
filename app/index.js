@@ -13,7 +13,7 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/">
+      <Route path="/search">
         <IndexRoute component={TermSearchView} />
       </Route>
     </Router>
