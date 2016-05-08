@@ -67,14 +67,9 @@ class TermSearchView extends Component {
   }
 
   render() {
-    /*
-      TODO: Add footer
-      TODO: Better columns on medium devices
-      TODO: Adapt terms layout to term-search static
-    */
     const { term, selectedSubjectFields, dictentries } = this.props;
     return (
-      <div className="container-fluid app">
+      <div className="container app">
         <div className="row search-row">
           <div className="col-sm-8 search-bar">
             <LiveSearch
@@ -84,11 +79,11 @@ class TermSearchView extends Component {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-8 results">
+        <div className="row results">
+          <div className="col-sm-8 terms">
             <DictentryList dictentries={dictentries} />
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 subject-fields">
             <SubjectFieldList
               selectedSubjectFields={selectedSubjectFields}
               dictentries={dictentries}

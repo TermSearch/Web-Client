@@ -66,6 +66,7 @@ export function fetchDictentries() {
     if (term.length > 0) search({ term, selectedSubjectFields })
       .fail( err => {
         // TODO: Create an alert with bootstrap alert: http://www.bootply.com/4FSUjc2qej
+        // TODO: Add dispatch, see: https://stackoverflow.com/questions/37078215/how-to-handle-errors-in-fetch-responses-with-redux-thunk/37099629#37099629
         alert("An API error has occured:\n\n "+JSON.stringify(err, null, 4))
       })
       .then(results => {
