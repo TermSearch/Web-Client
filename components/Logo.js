@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImage from '../assets/images/TERM-SEARCH-LOGO.png';
+import logoImage from '../logo.png';
 
 function Logo() {
   return (
