@@ -9,8 +9,8 @@
   },
   "scripts": {
     "restart:prod": "ssh caddy@178.62.196.36 'pm2 restart term-search'",
-    "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/website/public/dist/",
-    "copy:test": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-test",
+    "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/website/public/client/",
+    "copy:test": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-test/client/",
     "start": "webpack-dev-server",
     "build": "webpack",
     "webserver": "cd dist && browser-sync start --server",

@@ -10,13 +10,15 @@ import LiveSearch from '../components/LiveSearch';
 
 const store = configureStore();
 
-ReactDOM.render(
+const app = document.getElementById('app');
+
+if (app) ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/search">
+      <Route path="/client">
         <IndexRoute component={TermSearchView} />
       </Route>
     </Router>
   </Provider>,
-  document.getElementById('app')
+  app
 );
