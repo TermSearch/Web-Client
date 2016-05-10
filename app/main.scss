@@ -142,13 +142,14 @@ body {
 // RESULTS:TERMS
 
 .terms {
-  padding: 0 20px 30px 10px;
+  padding: 0 20px 30px 0px;
 }
 
 // Less white space for mobile screens
 @media (max-width: 768px) {
   .terms {
-    padding: 0 10px 10px 10px;
+    // margin: 0;
+    // padding: 0 10px 10px 10px;
   }
 }
 
@@ -161,8 +162,12 @@ ul.term-list {
 ul.term-list li {
   border-bottom: 1px dotted $border_color;
   background-color: $document_background_color;
-  padding: 2px;
-  margin: 0;
+  // padding: 0;
+  // margin: 0;
+}
+
+.term-thumbnail {
+  margin: 10px 20px;
 }
 
 .term-thumbnail h4 {
