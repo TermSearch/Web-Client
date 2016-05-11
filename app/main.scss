@@ -78,24 +78,16 @@ body {
 // AUTOSUGGEST
 
 .react-autosuggest__container {
-  // background-color: $document_background_accented;
+  background-color: $document_background_color;
   margin: 7px 0 0 20px;
   position: relative;
-  // border: 1px solid $border_color;
+
 }
 
 .react-autosuggest__input {
-  // background-color: inherit;
   width: 100%;
   height: 35px;
   margin-left: 5px;
-
-  /* Removing styling from bootstrap */
-  // outline: none;
-  // border: none !important;
-  // -webkit-box-shadow: none !important;
-  // -moz-box-shadow: none !important;
-  // box-shadow: none !important;
 }
 
 .react-autosuggest__input:focus {
@@ -149,7 +141,6 @@ body {
 @media (max-width: 768px) {
   .terms {
     // margin: 0;
-    // padding: 0 10px 10px 10px;
   }
 }
 
