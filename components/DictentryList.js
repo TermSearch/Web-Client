@@ -14,7 +14,7 @@ const defaultProps = {
 };
 
 const noResults = () => (
-    <div>
+    <div className='no-results'>
       <h5>Geen zoekresultaten</h5>
       <p>Uw zoekopdracht heeft geen resultaten opgeleverd.</p>
     </div>
