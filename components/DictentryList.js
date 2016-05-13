@@ -33,6 +33,7 @@ function DictentryList({ dictentries }) {
           <li key={dictentry.id}>
             <TermThumbnail
               term={dictentry.de}
+              termUrl={dictentry.deUrl}
               translations={dictentry.nl}
               subjectFields={dictentry.subjectFields}
             />

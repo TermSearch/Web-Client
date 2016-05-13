@@ -17,7 +17,7 @@ $almost_black: #444444;
 
 // Set functional color variables
 $text_color: $almost_black;
-$document_background_accented: $light_grey;
+$document_background_accented: $medium_grey;
 $top_bar_color: $bright_orange;
 $document_background_color: $almost_white;
 $border_color: $dark_grey;
@@ -50,7 +50,6 @@ body {
 }
 
 .search-bar {
-  // background-color: blue;
   margin: 20px 0px 15px 0px;
   padding-bottom: 5px;
 }
@@ -149,6 +148,14 @@ ul.term-list li {
   padding: 10px 0;
 }
 
+ul.term-list li:hover {
+  color: $text_color;
+  background: $document_background_accented;
+  cursor: hand;
+  cursor: pointer;
+  opacity: .9;
+}
+
 // Less white space for mobile screens
 @media (max-width: 768px) {
     ul.term-list li {
@@ -159,6 +166,21 @@ ul.term-list li {
 
 .term-thumbnail {
   margin: 10px 20px;
+}
+
+.term-thumbnail .term-link {
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  /* Makes sure the link doesn't get underlined */
+  z-index: 10;
+  /* raises anchor tag above everything else in div */
+  background-color: $document_background_color;
+  /*workaround to make clickable in IE */
+  opacity: 0;
+  /*workaround to make clickable in IE */
+  filter: alpha(opacity=0);
+  /*workaround to make clickable in IE */
 }
 
 .term-thumbnail h4 {

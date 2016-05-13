@@ -15,18 +15,19 @@ const renderTranslation = (translation, i) => (
 // Returns an array of subjectfield strings
 const getSubjectFields = (subjectFields) => subjectFields.map(sf => sf.termStr);
 
-function TermThumbnail({ term, translations, subjectFields }) {
+function TermThumbnail({ term, termUrl, translations, subjectFields }) {
   return (
     /*
-      TODO: Add links to static pages
-      TODO: Appearance static search results term-search.nl
+      TODO: Update base url term-search.nl/duits-nederlands/....
     */
     <div className="term-thumbnail">
-      <h6>
-        {term}
-        {translations.map(renderTranslation)}
-        <span className="subjectfield"> {getSubjectFields(subjectFields).join(', ')}</span>
-      </h6>
+      <a className="term-link" href={'https://term-search.nl/duits-nederlands/' + termUrl}>
+        <h6>
+          {term}
+          {translations.map(renderTranslation)}
+          <span className="subjectfield"> {getSubjectFields(subjectFields).join(', ')}</span>
+        </h6>
+      </a>
     </div>
   );
 }
