@@ -17,7 +17,7 @@
     "start": "webpack-dev-server",
     "start:dev": "npm run build && npm run webserver",
     "deploy:test": "npm run build && npm run copy:test",
-    "deploy:prod": "npm run build && npm run copy:prod",
+    "deploy:prod": "npm run build && npm run copy:prod && ssh caddy@178.62.196.36 'pm2 restart term-search'",
     "stats": "webpack --profile --json > stats.json"
   },
   "author": "Koen van Gilst",
