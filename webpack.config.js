@@ -30,7 +30,7 @@ const common = {
     new HtmlWebpackPlugin({
       title: 'Term Search Client',
       template: './index.ejs',
-      favicon: './images/favicon.ico'
+      favicon: './assets/images/favicon.ico'
     }),
   ],
   module: {
