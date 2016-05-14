@@ -15,7 +15,7 @@ const app = document.getElementById('app');
 if (app) ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/client">
+      <Route path="/">
         <IndexRoute component={TermSearchView} />
       </Route>
     </Router>
