@@ -42,10 +42,6 @@ const common = {
         include: __dirname,
       },
       {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
-      },
-      {
         test: /\.(jpg|png)$/,
         loader: 'file?name=[path][name].[hash].[ext]',
         include: PATHS.images
@@ -77,8 +73,8 @@ if (TARGET === 'start' || !TARGET) {
     module: {
       loaders: [
         {
-          test: /\.css$/,
-          loaders: ['style', 'css'],
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'sass'],
           // Include accepts either a path or an array of paths.
           include: PATHS.app,
         },
@@ -110,8 +106,10 @@ if (TARGET === 'build' || TARGET === 'stats') {
     module: {
       loaders: [
         {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract(
+            "style",
+            "css!sass")
         }
       ]
     },
