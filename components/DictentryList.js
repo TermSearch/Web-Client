@@ -20,7 +20,7 @@ const noResults = () => (
     </div>
 )
 
-function DictentryList({ dictentries }) {
+function DictentryList({ dictentries, siteUrl }) {
   /*
     TODO: Do not show "No results" message when search input is empty
     TODO: Move "No results" message up in component tree to TearmSearchView
@@ -36,6 +36,7 @@ function DictentryList({ dictentries }) {
               termUrl={dictentry.deUrl}
               translations={dictentry.nl}
               subjectFields={dictentry.subjectFields}
+              siteUrl={siteUrl}
             />
           </li>
         ))}

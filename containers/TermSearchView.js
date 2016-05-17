@@ -5,7 +5,7 @@ import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
-import config from '../config';
+import config from '../config/config';
 
 import {
   toggleSubjectField,
@@ -82,7 +82,10 @@ class TermSearchView extends Component {
         </div>
         <div className="row results">
           <div className="col-sm-8 terms">
-            <DictentryList dictentries={dictentries} />
+            <DictentryList
+              dictentries={dictentries}
+              siteUrl={config.siteUrl}
+            />
           </div>
           <div className="col-sm-4 subject-fields">
             <SubjectFieldList
