@@ -3,31 +3,13 @@
 */
 
 import escapeRegexChars from '../util/escapeRegexChars';
+import mergeDuplicates from '../util/mergeDuplicates';
 import $ from 'jquery';
 
 const API_LIMIT = 20;
 const API_SKIP = 0;
 
-// Helper function
-// TODO: Move to lib
-// TODO: Use same function for webclient as well
-// TODO: Write tests for this function
-// TODO: Also remove duplicate nl translations here?
-const mergeDuplicates = (dictEntries) => {
-  const onlyUniques = [];
-  dictEntries.forEach((entry) => {
-    let unique = true;
-    onlyUniques.forEach((uniqueEntry) => {
-      if (uniqueEntry.de === entry.de) {
-        unique = false;
-        // add Dutch translations to existing uniqueEntry
-        uniqueEntry.nl = uniqueEntry.nl.concat(entry.nl);
-      }
-    });
-    if (unique) onlyUniques.push(entry);
-  });
-  return onlyUniques;
-};
+
 
 export default ({
   term,

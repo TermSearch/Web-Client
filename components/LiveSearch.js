@@ -42,7 +42,12 @@ class LiveSearch extends React.Component {
   }
 
   loadSuggestions(value) {
-    const { dispatch, selectedSubjectFields, liveSearchIsLoading, suggestions } = this.props;
+    const {
+        dispatch,
+        selectedSubjectFields,
+        liveSearchIsLoading,
+        suggestions
+      } = this.props;
 
     /*
       TODO: If form submitted, then live search dispatch for setSuggestions should be cancelled or suggestions should be hidden.
@@ -62,8 +67,10 @@ class LiveSearch extends React.Component {
     // Start API call
     liveSearch({ term: value, selectedSubjectFields })
       .then(dictentries => {
+
         // Ignore suggestions if input value has changed
         if (value === this.props.term) dispatch(setSuggestions(dictentries));
+
         dispatch(liveSearchLoading(false));
       });
   }
