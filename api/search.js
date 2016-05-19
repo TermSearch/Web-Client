@@ -9,8 +9,6 @@ import $ from 'jquery';
 const API_LIMIT = 20;
 const API_SKIP = 0;
 
-
-
 export default ({
   term,
   selectedSubjectFields
