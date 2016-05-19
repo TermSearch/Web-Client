@@ -18,7 +18,7 @@ const getSubjectFields = (subjectFields) => subjectFields.map(sf => sf.termStr);
 function TermThumbnail({ term, termUrl, translations, subjectFields, siteUrl }) {
   return (
     <div className="term-thumbnail">
-      <a className="term-link" href={siteUrl + termUrl}>
+      <a className="term-link" href={siteUrl + "duits-nederlands/" + termUrl}>
         <h6>
           {term}
           {translations.map(renderTranslation)}
