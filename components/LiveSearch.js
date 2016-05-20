@@ -35,6 +35,7 @@ const renderSuggestion = suggestion => (
 class LiveSearch extends React.Component {
   constructor() {
     super();
+    this.stopLiveSeach = false;
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -49,11 +50,6 @@ class LiveSearch extends React.Component {
         suggestions
       } = this.props;
 
-    /*
-      TODO: If form submitted, then live search dispatch for setSuggestions should be cancelled or suggestions should be hidden.
-            Maybe use isCollapsed={true} with a Redux value?
-    */
-
     // Is liveSearchIsLoading then filter current sugggestions
     if (liveSearchIsLoading) {
       const regex = new RegExp('^' + value, 'i');
@@ -65,12 +61,18 @@ class LiveSearch extends React.Component {
     dispatch(liveSearchLoading(true));
 
     // Start API call
-    liveSearch({ term: value, selectedSubjectFields })
+    liveSearch({
+        term: value,
+        selectedSubjectFields
+      })
       .then(dictentries => {
 
         // Ignore suggestions if input value has changed
-        if (value === this.props.term) dispatch(setSuggestions(dictentries));
+        if (value === this.props.term && !this.stopLiveSeach) {
+          dispatch(setSuggestions(dictentries));
+        }
 
+        this.stopLiveSeach = false;
         dispatch(liveSearchLoading(false));
       });
   }
@@ -98,10 +100,8 @@ class LiveSearch extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const { handleSearch, dispatch } = this.props;
-    /*
-      HACK: empty suggestions to hide them
-    */
-    dispatch(setSuggestions([]));
+    this.stopLiveSeach = true; // HACK: stops live search update with local variable
+    dispatch(setSuggestions([])); // HACK: empty suggestions to hide them
     handleSearch();
   }
 
@@ -114,12 +114,9 @@ class LiveSearch extends React.Component {
     } = this.props;
 
     const inputProps = {
-      // placeholder: "Begin met typen",
       value: term,
       onChange: this.onChange
     };
-
-    // const status = (liveSearchIsLoading ? 'bezig...' : 'vul iets in voor suggesties');
 
     return (
       <form onSubmit={this.onSubmit}>
