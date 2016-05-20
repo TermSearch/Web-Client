@@ -17,6 +17,7 @@ const defaultProps = {
   dictentries: [],
 };
 
+// Query but no results
 const noResultsInfo = () => (
     <div className='results-info'>
       <h5>Geen zoekresultaten</h5>
@@ -24,6 +25,7 @@ const noResultsInfo = () => (
     </div>
 )
 
+// Query with results
 const resultsInfo = (queryTime, numberOfResults) => (
   <div className='results-info'>
     <p>{numberOfResults} resultaten in {queryTime/1000} seconden.</p>
@@ -33,8 +35,8 @@ const resultsInfo = (queryTime, numberOfResults) => (
 function DictentryList({ dictentries, siteUrl, queryTime, count }) {
   return (
     <div>
-      { (dictentries.length === 0 && !queryTime) ? noResultsInfo() : '' }
-      { (queryTime) ? resultsInfo(queryTime, count) : '' }
+      { (count === 0 && queryTime != 0) ? noResultsInfo() : '' }
+      { (count != 0 && queryTime != 0) ? resultsInfo(queryTime, count) : '' }
 
       <ul className="term-list">
         {dictentries.map(dictentry => (
