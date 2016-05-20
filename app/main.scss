@@ -199,8 +199,12 @@ ul.term-list li:hover {
   font-style: italic;
 }
 
-.no-results {
+.results-info {
   margin: 10px 20px;
+}
+
+.results-info p {
+  font-size: 90%;
 }
 
 // RESULTS:SUBJECTFIELDS

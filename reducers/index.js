@@ -6,6 +6,8 @@ const initialState = {
   selectedSubjectFields: [],
   dictentries: [],
   suggestions: [],
+  queryTime: 0,
+  count: 0,
 };
 
 export default function dictEntryListReducer(state = initialState, action) {
@@ -21,6 +23,18 @@ export default function dictEntryListReducer(state = initialState, action) {
       return {
         ...state,
         liveSearchIsLoading: action.liveSearchIsLoading,
+      };
+
+    case types.SET_QUERY_TIME:
+      return {
+        ...state,
+        queryTime: action.queryTime,
+      };
+
+    case types.SET_COUNT:
+      return {
+        ...state,
+        count: action.count,
       };
 
     // Removes subjectField from selectedSubjectFields array if it exists
@@ -57,7 +71,9 @@ export default function dictEntryListReducer(state = initialState, action) {
         suggestion: [],
         dictentries: [],
         term: '',
-        liveSearchLoading: false
+        liveSearchLoading: false,
+        queryTime: 0,
+        count: 0,
       }
 
     default:

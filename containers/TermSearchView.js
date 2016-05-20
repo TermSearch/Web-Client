@@ -12,6 +12,8 @@ import {
   setTerm,
   fetchDictentries,
   setSelectedSubjectFields,
+  queryTime,
+  count,
 } from '../actions';
 
 const propTypes = {
@@ -20,6 +22,8 @@ const propTypes = {
   selectedSubjectFields: PropTypes.array,
   term: PropTypes.string,
   dictentries: PropTypes.array,
+  queryTime: PropTypes.number,
+  count: PropTypes.number,
 };
 
 const defaultProps = {
@@ -68,7 +72,7 @@ class TermSearchView extends Component {
   }
 
   render() {
-    const { term, selectedSubjectFields, dictentries } = this.props;
+    const { term, selectedSubjectFields, dictentries, queryTime, count } = this.props;
     return (
       <div className="container app">
         <div className="row search-row">
@@ -85,6 +89,8 @@ class TermSearchView extends Component {
             <DictentryList
               dictentries={dictentries}
               siteUrl={config.siteUrl}
+              queryTime={queryTime}
+              count={count}
             />
           </div>
           <div className="col-sm-4 subject-fields">
@@ -104,8 +110,10 @@ class TermSearchView extends Component {
 TermSearchView.propTypes = propTypes;
 TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ selectedSubjectFields, dictentries, term }) => ({
+export default connect(({ selectedSubjectFields, dictentries, term, queryTime, count, }) => ({
   selectedSubjectFields,
   dictentries,
-  term
+  term,
+  queryTime,
+  count,
 }))(TermSearchView);

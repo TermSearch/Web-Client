@@ -18,6 +18,7 @@ export default ({
 
   const escapedTerm = escapeRegexChars(term);
   const apiUrl = `${process.env.API_URL}/dictentries/startsWith?`;
+  let count = 0;
 
   return $.ajax({
       url: apiUrl,
@@ -31,11 +32,16 @@ export default ({
       dataType: 'json',
       type: 'GET'
     })
+    .then(json => {
+      count = json.results.count;
+      return json;
+    })
     .then(json => json.results.dictentries || [])
     .then(mergeDuplicates)
     .then(dictentries => {
       const queryTime = new Date() - startTime;
       return {
+        count,
         queryTime,
         dictentries // should return an empty array if not found
       }

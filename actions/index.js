@@ -16,6 +16,20 @@ export function liveSearchLoading(liveSearchIsLoading = false) {
   }
 }
 
+export function setQueryTime(queryTime = 0) {
+  return {
+    type: types.SET_QUERY_TIME,
+    queryTime,
+  }
+}
+
+export function setCount(count = 0) {
+  return {
+    type: types.SET_COUNT,
+    count,
+  }
+}
+
 export function toggleSubjectField(subjectField = '') {
   return {
     type: types.TOGGLE_SUBJECTFIELD,
@@ -70,8 +84,8 @@ export function fetchDictentries() {
         alert("An API error has occured:\n\n "+JSON.stringify(err, null, 4))
       })
       .then(results => {
-        // TODO: Move this to seach results view, tiny letters above footer
-        console.log("Query time: "+results.queryTime+" ms");
+        dispatch(setCount(results.count));
+        dispatch(setQueryTime(results.queryTime));
         return results.dictentries;
       })
       .then(dictentries => {

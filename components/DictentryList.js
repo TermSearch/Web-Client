@@ -2,32 +2,40 @@ import React, { PropTypes } from 'react';
 import TermThumbnail from './TermThumbnail';
 
 const propTypes = {
-  dictentries: PropTypes.arrayOf(PropTypes.shape({
-    de: PropTypes.string.isRequired,
-    nl: PropTypes.array,
-    subjectFields: PropTypes.array,
-  })),
+  dictentries: PropTypes.arrayOf(
+    PropTypes.shape({
+      de: PropTypes.string.isRequired,
+      nl: PropTypes.array,
+      subjectFields: PropTypes.array,
+    })),
+  siteUrl: PropTypes.string,
+  queryTime: PropTypes.number,
+  count: PropTypes.number,
 };
 
 const defaultProps = {
   dictentries: [],
 };
 
-const noResults = () => (
-    <div className='no-results'>
+const noResultsInfo = () => (
+    <div className='results-info'>
       <h5>Geen zoekresultaten</h5>
-      <p>Uw zoekopdracht heeft geen resultaten opgeleverd.</p>
+      <h6>Uw zoekopdracht heeft geen resultaten opgeleverd.</h6>
     </div>
 )
 
-function DictentryList({ dictentries, siteUrl }) {
-  /*
-    TODO: Do not show "No results" message when search input is empty
-    TODO: Move "No results" message up in component tree to TearmSearchView
-  */
+const resultsInfo = (queryTime, numberOfResults) => (
+  <div className='results-info'>
+    <p>{numberOfResults} resultaten in {queryTime/1000} seconden.</p>
+  </div>
+);
+
+function DictentryList({ dictentries, siteUrl, queryTime, count }) {
   return (
     <div>
-      { (dictentries.length === 0) ? noResults() : '' }
+      { (dictentries.length === 0 && !queryTime) ? noResultsInfo() : '' }
+      { (queryTime) ? resultsInfo(queryTime, count) : '' }
+
       <ul className="term-list">
         {dictentries.map(dictentry => (
           <li key={dictentry.id}>
