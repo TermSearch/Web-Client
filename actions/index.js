@@ -23,6 +23,13 @@ export function setQueryTime(queryTime = 0) {
   }
 }
 
+export function setProgress(progress = 0) {
+  return {
+    type: types.SET_PROGRESS,
+    progress,
+  }
+}
+
 export function setCount(count = 0) {
   return {
     type: types.SET_COUNT,

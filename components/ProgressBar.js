@@ -13,7 +13,7 @@ var component = React.createClass({
     }
 
     var style = {
-      backgroundColor: this.props.color || '#0BD318',
+      backgroundColor: this.props.color || '#FFA419',
       width: completed + '%',
       transition: "width 200ms",
       height: this.props.height || 10

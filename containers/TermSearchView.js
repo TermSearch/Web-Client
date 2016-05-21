@@ -15,6 +15,7 @@ import {
   setSelectedSubjectFields,
   queryTime,
   count,
+  progress,
 } from '../actions';
 
 const propTypes = {
@@ -25,12 +26,14 @@ const propTypes = {
   dictentries: PropTypes.array,
   queryTime: PropTypes.number,
   count: PropTypes.number,
+  progress: PropTypes.number,
 };
 
 const defaultProps = {
   term: '',
   selectedSubjectFields: [],
   dictentries: [],
+  progress: 0,
 };
 
 class TermSearchView extends Component {
@@ -73,10 +76,19 @@ class TermSearchView extends Component {
   }
 
   render() {
-    const { term, selectedSubjectFields, dictentries, queryTime, count } = this.props;
+
+    const {
+      term,
+      selectedSubjectFields,
+      dictentries,
+      queryTime,
+      count,
+      progress
+    } = this.props;
+
     return (
       <div className="app-container">
-        <Progress completed={0} height={1} />
+        <Progress completed={progress} height={1} />
         <div className="container content">
           <div className="row search-row">
             <div className="col-sm-8 search-bar">
@@ -114,10 +126,18 @@ class TermSearchView extends Component {
 TermSearchView.propTypes = propTypes;
 TermSearchView.defaultProps = defaultProps;
 
-export default connect(({ selectedSubjectFields, dictentries, term, queryTime, count, }) => ({
+export default connect(({
   selectedSubjectFields,
   dictentries,
   term,
   queryTime,
   count,
+  progress,
+}) => ({
+  selectedSubjectFields,
+  dictentries,
+  term,
+  queryTime,
+  count,
+  progress,
 }))(TermSearchView);
