@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LiveSearch from '../components/LiveSearch';
+import Progress from '../components/ProgressBar';
 import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';
 import Logo from '../components/Logo';
@@ -74,34 +75,37 @@ class TermSearchView extends Component {
   render() {
     const { term, selectedSubjectFields, dictentries, queryTime, count } = this.props;
     return (
-      <div className="container app">
-        <div className="row search-row">
-          <div className="col-sm-8 search-bar">
-            <LiveSearch
-              handleSearch={this.handleSearch}
-              selectedSubjectFields={selectedSubjectFields}
-              term={term}
-            />
+      <div className="app-container">
+        <Progress completed={0} height={1} />
+        <div className="container content">
+          <div className="row search-row">
+            <div className="col-sm-8 search-bar">
+              <LiveSearch
+                handleSearch={this.handleSearch}
+                selectedSubjectFields={selectedSubjectFields}
+                term={term}
+              />
+            </div>
           </div>
+          <div className="row results">
+            <div className="col-sm-8 terms">
+              <DictentryList
+                dictentries={dictentries}
+                siteUrl={config.siteUrl}
+                queryTime={queryTime}
+                count={count}
+              />
+            </div>
+            <div className="col-sm-4 subject-fields">
+              <SubjectFieldList
+                selectedSubjectFields={selectedSubjectFields}
+                dictentries={dictentries}
+                handleSubjectFieldToggle={this.handleSubjectFieldToggle}
+              />
+            </div>
+          </div>
+          <Footer siteUrl={config.siteUrl}/>
         </div>
-        <div className="row results">
-          <div className="col-sm-8 terms">
-            <DictentryList
-              dictentries={dictentries}
-              siteUrl={config.siteUrl}
-              queryTime={queryTime}
-              count={count}
-            />
-          </div>
-          <div className="col-sm-4 subject-fields">
-            <SubjectFieldList
-              selectedSubjectFields={selectedSubjectFields}
-              dictentries={dictentries}
-              handleSubjectFieldToggle={this.handleSubjectFieldToggle}
-            />
-          </div>
-        </div>
-        <Footer siteUrl={config.siteUrl}/>
       </div>
     );
   }

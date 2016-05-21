@@ -25,19 +25,23 @@ $border_color_light: $medium_grey;
 
 // DOCUMENT
 
-#webapp-body {
-  // border-top: solid $top_bar_color;
+#client-body {
   background-color: $document_background_color;
 }
 
-.app {
+.app-container {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
   padding: 5px 20px;
   max-width: 1000px;
 }
 
 // Less white space for mobile screens
 @media (max-width: 768px) {
-  .app {
+  .content {
     padding: 5px 10px;
   }
 }
