@@ -33,7 +33,7 @@ const defaultProps = {
   term: '',
   selectedSubjectFields: [],
   dictentries: [],
-  loading: true,
+  loading: false,
 };
 
 class TermSearchView extends Component {
