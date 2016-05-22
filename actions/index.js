@@ -23,10 +23,10 @@ export function setQueryTime(queryTime = 0) {
   }
 }
 
-export function setProgress(progress = 0) {
+export function setLoading(loading = false) {
   return {
-    type: types.SET_PROGRESS,
-    progress,
+    type: types.SET_LOADING,
+    loading,
   }
 }
 
@@ -73,30 +73,41 @@ export function clearAll() {
 
 export function fetchDictentries() {
   return (dispatch, getState) => {
-    const { term, selectedSubjectFields } = getState();
+    const {
+      term,
+      selectedSubjectFields
+    } = getState();
 
     browserHistory.push({
       pathname: '/',
       query: {
         term: term || undefined,
         selectedSubjectFields: selectedSubjectFields || undefined
-       },
+      },
     });
 
     // Only query when term has a search string
-    if (term.length > 0) search({ term, selectedSubjectFields })
-      .fail( err => {
-        // TODO: Create an alert with bootstrap alert: http://www.bootply.com/4FSUjc2qej
-        // TODO: Add dispatch, see: https://stackoverflow.com/questions/37078215/how-to-handle-errors-in-fetch-responses-with-redux-thunk/37099629#37099629
-        alert("An API error has occured:\n\n "+JSON.stringify(err, null, 4))
-      })
-      .then(results => {
-        dispatch(setCount(results.count));
-        dispatch(setQueryTime(results.queryTime));
-        return results.dictentries;
-      })
-      .then(dictentries => {
-        dispatch(setDictentries(dictentries));
-      });
+    if (term.length > 0) {
+      dispatch(setLoading(true));
+      search({
+          term,
+          selectedSubjectFields
+        })
+        .fail(err => {
+          // TODO: Create an alert with bootstrap alert: http://www.bootply.com/4FSUjc2qej
+          // TODO: Add dispatch, see: https://stackoverflow.com/questions/37078215/how-to-handle-errors-in-fetch-responses-with-redux-thunk/37099629#37099629
+          alert("An API error has occured:\n\n " + JSON.stringify(err, null, 4))
+          dispatch(setLoading(false));
+        })
+        .then(results => {
+          dispatch(setCount(results.count));
+          dispatch(setQueryTime(results.queryTime));
+          return results.dictentries;
+        })
+        .then(dictentries => {
+          dispatch(setDictentries(dictentries));
+          dispatch(setLoading(false));
+        });
+    }
   };
 }

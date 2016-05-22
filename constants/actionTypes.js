@@ -7,4 +7,4 @@ export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 export const LIVE_SEARCH_LOADING = 'LIVE_SEARCH_LOADING';
 export const SET_QUERY_TIME = 'SET_QUERY_TIME';
 export const SET_COUNT = 'SET_COUNT';
-export const SET_PROGRESS = 'SET_PROGRESS';
+export const SET_LOADING = 'SET_LOADING';

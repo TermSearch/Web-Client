@@ -15,7 +15,7 @@ import {
   setSelectedSubjectFields,
   queryTime,
   count,
-  progress,
+  loading,
 } from '../actions';
 
 const propTypes = {
@@ -26,14 +26,14 @@ const propTypes = {
   dictentries: PropTypes.array,
   queryTime: PropTypes.number,
   count: PropTypes.number,
-  progress: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 const defaultProps = {
   term: '',
   selectedSubjectFields: [],
   dictentries: [],
-  progress: 0,
+  loading: true,
 };
 
 class TermSearchView extends Component {
@@ -83,12 +83,12 @@ class TermSearchView extends Component {
       dictentries,
       queryTime,
       count,
-      progress
+      loading
     } = this.props;
 
     return (
       <div className="app-container">
-        <Progress completed={progress} height={1} />
+        <Progress loading={loading} />
         <div className="container content">
           <div className="row search-row">
             <div className="col-sm-8 search-bar">
@@ -132,12 +132,12 @@ export default connect(({
   term,
   queryTime,
   count,
-  progress,
+  loading,
 }) => ({
   selectedSubjectFields,
   dictentries,
   term,
   queryTime,
   count,
-  progress,
+  loading,
 }))(TermSearchView);

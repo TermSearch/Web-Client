@@ -6,7 +6,7 @@ import debounce from '../util/debounce';
 import $ from 'jquery';
 
 const DEBOUNCE_TIME = 300;
-const API_LIMIT = 2000;
+const API_LIMIT = 20;
 const API_SKIP = 0;
 const RESULTS_LIMIT = 10;
 

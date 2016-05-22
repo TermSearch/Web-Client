@@ -37,10 +37,10 @@ export default function dictEntryListReducer(state = initialState, action) {
         count: action.count,
       };
 
-    case types.SET_PROGRESS:
+    case types.SET_LOADING:
       return {
         ...state,
-        progress: action.progress,
+        loading: action.loading,
       };
 
     // Removes subjectField from selectedSubjectFields array if it exists
@@ -80,7 +80,7 @@ export default function dictEntryListReducer(state = initialState, action) {
         liveSearchLoading: false,
         queryTime: 0,
         count: 0,
-        progress: 0,
+        loading: false,
       }
 
     default:

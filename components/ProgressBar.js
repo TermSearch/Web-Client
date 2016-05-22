@@ -1,27 +1,24 @@
-var React = require('react');
+import React from 'react';
 
 var component = React.createClass({
 
   render: function() {
 
-    var completed = +this.props.completed;
-    if (completed < 0) {
-      completed = 0
-    }
-    if (completed > 100) {
-      completed = 100
-    }
+    var visibility = (this.props.loading) ? 'visible' : 'hidden';
 
     var style = {
-      backgroundColor: this.props.color || '#FFA419',
-      width: completed + '%',
-      transition: "width 200ms",
-      height: this.props.height || 10
+      position: 'relative',
+      marginTop: 0,
+      width: '100%',
+      height: 1,
+      visibility: visibility,
     };
 
     return (
-      <div className="progressbar-container">
-        <div className="progressbar-progress" style={style}>{this.props.children}</div>
+      <div className="load-bar" style={style} >
+        <div className="bar">{this.props.children}</div>
+        <div className="bar">{this.props.children}</div>
+        <div className="bar">{this.props.children}</div>
       </div>
     );
   }
