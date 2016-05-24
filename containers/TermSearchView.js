@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import LiveSearch from '../components/LiveSearch';
 import Progress from '../components/ProgressBar';
 import DictentryList from '../components/DictentryList';
@@ -15,7 +15,7 @@ import {
   setSelectedSubjectFields,
   queryTime,
   count,
-  loading,
+  loading
 } from '../actions';
 
 const propTypes = {
@@ -26,14 +26,14 @@ const propTypes = {
   dictentries: PropTypes.array,
   queryTime: PropTypes.number,
   count: PropTypes.number,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool
 };
 
 const defaultProps = {
   term: '',
   selectedSubjectFields: [],
   dictentries: [],
-  loading: false,
+  loading: false
 };
 
 class TermSearchView extends Component {
@@ -49,28 +49,34 @@ class TermSearchView extends Component {
   }
 
   // needed to fetch on back/forward,
-  componentWillReceiveProps({ location }) {
+  componentWillReceiveProps({location}) {
     if (location.action === 'POP') {
       this.fetchFromLocation(location);
     }
   }
 
-  fetchFromLocation({ query: { term, selectedSubjectFields } }) {
-    const { dispatch } = this.props;
+  fetchFromLocation({
+    query: {
+      term,
+      selectedSubjectFields
+    }
+  }) {
+    const {dispatch} = this.props;
     // Convert selectedSubjectFields to array if string
-    if (selectedSubjectFields && selectedSubjectFields.constructor === String) selectedSubjectFields = [selectedSubjectFields];
+    if (selectedSubjectFields && selectedSubjectFields.constructor === String)
+      selectedSubjectFields = [selectedSubjectFields];
     dispatch(setSelectedSubjectFields(selectedSubjectFields));
     dispatch(setTerm(term));
     this.handleSearch();
   }
 
   handleSearch() {
-    const { dispatch, term } = this.props;
+    const {dispatch, term} = this.props;
     dispatch(fetchDictentries())
   }
 
   handleSubjectFieldToggle(subjectField) {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     dispatch(toggleSubjectField(subjectField));
     this.handleSearch();
   }
@@ -88,32 +94,19 @@ class TermSearchView extends Component {
 
     return (
       <div className="app-container">
-        <Progress loading={loading} />
+        <Progress loading={loading}/>
         <div className="container content">
           <div className="row search-row">
             <div className="col-sm-8 search-bar">
-              <LiveSearch
-                handleSearch={this.handleSearch}
-                selectedSubjectFields={selectedSubjectFields}
-                term={term}
-              />
+              <LiveSearch handleSearch={this.handleSearch} selectedSubjectFields={selectedSubjectFields} term={term}/>
             </div>
           </div>
           <div className="row results">
             <div className="col-sm-8 terms">
-              <DictentryList
-                dictentries={dictentries}
-                siteUrl={config.siteUrl}
-                queryTime={queryTime}
-                count={count}
-              />
+              <DictentryList dictentries={dictentries} siteUrl={config.siteUrl} queryTime={queryTime} count={count}/>
             </div>
             <div className="col-sm-4 subject-fields">
-              <SubjectFieldList
-                selectedSubjectFields={selectedSubjectFields}
-                dictentries={dictentries}
-                handleSubjectFieldToggle={this.handleSubjectFieldToggle}
-              />
+              <SubjectFieldList selectedSubjectFields={selectedSubjectFields} dictentries={dictentries} handleSubjectFieldToggle={this.handleSubjectFieldToggle}/>
             </div>
           </div>
           <Footer siteUrl={config.siteUrl}/>
@@ -132,12 +125,12 @@ export default connect(({
   term,
   queryTime,
   count,
-  loading,
+  loading
 }) => ({
   selectedSubjectFields,
   dictentries,
   term,
   queryTime,
   count,
-  loading,
+  loading
 }))(TermSearchView);
