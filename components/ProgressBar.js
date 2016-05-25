@@ -16,9 +16,9 @@ function ProgressBar() {
 
   return (
     <div className="load-bar" style={style}>
-      <div className="bar">{this.props.children}</div>
-      <div className="bar">{this.props.children}</div>
-      <div className="bar">{this.props.children}</div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
     </div>
   );
 }
