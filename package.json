@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint ./",
-    "test": "",
+    "test": "babel-tape-runner tests/*.js | faucet; exit 0",
     "restart:prod": "ssh caddy@178.62.196.36 'pm2 restart term-search'",
     "copy:dev": "rsync --recursive --delete dist/ ~/Websites/LIVE/term-search/website/public/client/",
     "copy:test": "rsync -v --recursive --delete dist/ caddy@178.62.196.36:/opt/term-search-test/",
@@ -36,6 +36,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
@@ -44,6 +45,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
+    "babel-tape-runner": "^2.0.1",
     "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.23.1",
     "eslint": "^2.11.1",
@@ -51,6 +53,7 @@
     "eslint-plugin-react": "^5.1.1",
     "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "^1.0.1",
+    "faucet": "0.0.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.19.0",
     "imports-loader": "^0.6.5",

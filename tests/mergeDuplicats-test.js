@@ -1,18 +1,53 @@
 import test from 'tape';
+import mergeDuplicates from '../util/mergeDuplicates';
 
-test('A passing test', (assert) => {
+test('Merging duplicates', (assert) => {
 
-  assert.pass('This test will pass.');
+  const input = [
+    {
+      "id": "55a7bdd97af068e81b7f74c8",
+      "de": "Anlage",
+      "deUrl": "Anlage",
+      "nl": [
+          "bijl.",
+          "bijlage"
+        ],
+      "note": "TRAD - Everyday terms and expressions",
+      "subjectFields": []
+      },
+    {
+      "id": "55a7bdda7af068e81b7f88f2",
+      "de": "Anlage",
+      "deUrl": "Anlage",
+      "nl": [
+          "bijl.",
+          "bijlage"
+        ],
+      "note": "TRAD - Everyday terms and expressions",
+      "subjectFields": []
+      }
+    ]
 
-  assert.end();
-});
 
-test('Assertions with tape.', (assert) => {
-  const expected = 'something to test';
-  const actual = 'sonething to test';
+  const expected = [
+    {
+      "id": "55a7bdd97af068e81b7f74c8",
+      "de": "Anlage",
+      "deUrl": "Anlage",
+      "nl": [
+        "bijl.",
+        "bijlage",
+        "bijl.",
+        "bijlage"
+    ],
+      "note": "TRAD - Everyday terms and expressions",
+      "subjectFields": []
+    }
+  ];
+  const actual = mergeDuplicates(input);
 
-  assert.equal(actual, expected,
-    'Given two mismatched values, .equal() should produce a nice bug report');
+  assert.deepEqual(actual, expected,
+    'Dutch translations should be merged.');
 
   assert.end();
 });
