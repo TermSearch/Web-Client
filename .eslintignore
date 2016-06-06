@@ -1,2 +1,6 @@
-**/static/*
-**/node_modules/*
+**/static/**
+**/node_modules/**
+**/dist/**
+**/*.log
+**/*.md
+webpack.config.js

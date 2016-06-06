@@ -120,12 +120,6 @@ class LiveSearch extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        {/*
-          TODO: Create a progress bar instead of this
-          <div className="status">
-          <strong>Status:</strong> {status}
-        </div>
-        */}
         <div className="input-group">
           <Logo />
           <Autosuggest
