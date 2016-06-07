@@ -1,9 +1,8 @@
-// TODO: Use same function for webclient as well
-// TODO: Write tests for this function
-// TODO: Also remove duplicate nl translations here?
 export default (dictEntries) => {
+
   const onlyUniques = [];
   dictEntries.forEach((entry) => {
+
     let unique = true;
     onlyUniques.forEach((uniqueEntry) => {
       if (uniqueEntry.de === entry.de) {
@@ -12,7 +11,26 @@ export default (dictEntries) => {
         uniqueEntry.nl = uniqueEntry.nl.concat(entry.nl);
       }
     });
+
     if (unique) onlyUniques.push(entry);
+
   });
-  return onlyUniques;
+
+  return removeDutchDuplicates(onlyUniques);
+
 };
+
+const removeDutchDuplicates = (dictEntries) => {
+
+  dictEntries.forEach((entry) => {
+
+    // Converting array to Set removes all duplicates
+    // Then convert is back to array
+    const onlyUniques = [...new Set(entry.nl)];
+    entry.nl = onlyUniques;
+
+  });
+
+  return dictEntries;
+
+}
