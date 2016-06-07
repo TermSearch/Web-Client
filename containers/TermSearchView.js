@@ -89,7 +89,7 @@ class TermSearchView extends Component {
       dictentries,
       queryTime,
       count,
-      loading
+      loading,
     } = this.props;
 
     return (
@@ -125,12 +125,12 @@ export default connect(({
   term,
   queryTime,
   count,
-  loading
+  loading,
 }) => ({
   selectedSubjectFields,
   dictentries,
   term,
   queryTime,
   count,
-  loading
+  loading,
 }))(TermSearchView);
