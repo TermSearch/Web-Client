@@ -1,17 +1,17 @@
 /*  Term-Search search api call
     TODO: Add Fulltext search results?
+    TODO: Add pagination
 */
 
 import escapeRegexChars from '../util/escapeRegexChars';
 import mergeDuplicates from '../util/mergeDuplicates';
 import $ from 'jquery';
 
-const API_LIMIT = 20;
-const API_SKIP = 0;
-
 export default ({
   term,
-  selectedSubjectFields
+  selectedSubjectFields,
+  limit = 20,
+  skip = 0
 }) => {
 
   const startTime = new Date();
@@ -24,8 +24,8 @@ export default ({
       url: apiUrl,
       data: {
         term: escapedTerm,
-        limit: API_LIMIT,
-        skip: API_SKIP,
+        limit: limit,
+        skip: skip,
         subjectFields: selectedSubjectFields,
         format: 'json'
       },
