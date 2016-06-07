@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-function ProgressBar() {
+const propTypes = {
+  loading: PropTypes.bool,
+};
 
-  var visibility = (this.props.loading)
+function ProgressBar({ loading }) {
+
+  var visibility = (loading)
     ? 'visible'
     : 'hidden';
 
@@ -22,5 +26,7 @@ function ProgressBar() {
     </div>
   );
 }
+
+ProgressBar.propTypes = propTypes;
 
 export default ProgressBar
