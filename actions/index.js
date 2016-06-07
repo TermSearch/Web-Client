@@ -2,6 +2,13 @@ import { browserHistory } from 'react-router';
 import * as types from '../constants/actionTypes';
 import search from '../api/search';
 
+export function setPage(page = 1) {
+  return {
+    type: types.SET_PAGE,
+    page,
+  };
+}
+
 export function setTerm(term = '') {
   return {
     type: types.SET_TERM,

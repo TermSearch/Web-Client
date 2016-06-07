@@ -8,10 +8,17 @@ const initialState = {
   suggestions: [],
   queryTime: 0,
   count: 0,
+  page: 1,
 };
 
 export default function dictEntryListReducer(state = initialState, action) {
   switch (action.type) {
+
+    case types.SET_PAGE:
+      return {
+        ...state,
+        page: action.page,
+      };
 
     case types.SET_TERM:
       return {

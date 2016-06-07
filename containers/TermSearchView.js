@@ -4,6 +4,7 @@ import LiveSearch from '../components/LiveSearch';
 import Progress from '../components/ProgressBar';
 import DictentryList from '../components/DictentryList';
 import SubjectFieldList from '../components/SubjectFieldList';
+import Pagination from '../components/Pagination';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 import config from '../config/config';
@@ -13,9 +14,7 @@ import {
   setTerm,
   fetchDictentries,
   setSelectedSubjectFields,
-  queryTime,
-  count,
-  loading
+  setPage,
 } from '../actions';
 
 const propTypes = {
@@ -26,14 +25,16 @@ const propTypes = {
   dictentries: PropTypes.array,
   queryTime: PropTypes.number,
   count: PropTypes.number,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  page: PropTypes.number,
 };
 
 const defaultProps = {
   term: '',
   selectedSubjectFields: [],
   dictentries: [],
-  loading: false
+  loading: false,
+  page: 1
 };
 
 class TermSearchView extends Component {
@@ -41,6 +42,7 @@ class TermSearchView extends Component {
     super(props, context);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSubjectFieldToggle = this.handleSubjectFieldToggle.bind(this);
+    this.handleSetPage = this.handleSetPage.bind(this);
   }
 
   // fetch on page load
@@ -81,6 +83,11 @@ class TermSearchView extends Component {
     this.handleSearch();
   }
 
+  handleSetPage(pageNr) {
+    const {dispatch} = this.props;
+    dispatch(setPage(pageNr));
+  }
+
   render() {
 
     const {
@@ -90,6 +97,7 @@ class TermSearchView extends Component {
       queryTime,
       count,
       loading,
+      page,
     } = this.props;
 
     return (
@@ -109,6 +117,11 @@ class TermSearchView extends Component {
               <SubjectFieldList selectedSubjectFields={selectedSubjectFields} dictentries={dictentries} handleSubjectFieldToggle={this.handleSubjectFieldToggle}/>
             </div>
           </div>
+          <div className="row">
+              <div className="col-sm-8">
+                <Pagination page={page} count={count} handleSetPage={this.handleSetPage} />
+              </div>
+          </div>
           <Footer siteUrl={config.siteUrl}/>
         </div>
       </div>
@@ -126,6 +139,7 @@ export default connect(({
   queryTime,
   count,
   loading,
+  page,
 }) => ({
   selectedSubjectFields,
   dictentries,
@@ -133,4 +147,5 @@ export default connect(({
   queryTime,
   count,
   loading,
+  page,
 }))(TermSearchView);

@@ -8,3 +8,4 @@ export const LIVE_SEARCH_LOADING = 'LIVE_SEARCH_LOADING';
 export const SET_QUERY_TIME = 'SET_QUERY_TIME';
 export const SET_COUNT = 'SET_COUNT';
 export const SET_LOADING = 'SET_LOADING';
+export const SET_PAGE = "SET_PAGE";
