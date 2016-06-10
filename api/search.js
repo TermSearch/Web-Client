@@ -10,8 +10,7 @@ import $ from 'jquery';
 export default ({
   term,
   selectedSubjectFields,
-  limit = 20,
-  skip = 0
+  page,
 }) => {
 
   const startTime = new Date();
@@ -19,6 +18,9 @@ export default ({
   const escapedTerm = escapeRegexChars(term);
   const apiUrl = `${process.env.API_URL}/dictentries/startsWith?`;
   let count = 0;
+
+  const limit = 20;
+  const skip = Math.ceil((page - 1) * limit);
 
   return $.ajax({
       url: apiUrl,

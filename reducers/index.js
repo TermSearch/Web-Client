@@ -88,6 +88,7 @@ export default function dictEntryListReducer(state = initialState, action) {
         queryTime: 0,
         count: 0,
         loading: false,
+        page: 0,
       }
 
     default:

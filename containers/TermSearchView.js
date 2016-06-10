@@ -74,6 +74,7 @@ class TermSearchView extends Component {
 
   handleSearch() {
     const {dispatch, term} = this.props;
+    dispatch(setPage(1));
     dispatch(fetchDictentries())
   }
 
@@ -86,6 +87,7 @@ class TermSearchView extends Component {
   handleSetPage(pageNr) {
     const {dispatch} = this.props;
     dispatch(setPage(pageNr));
+    dispatch(fetchDictentries());
   }
 
   render() {

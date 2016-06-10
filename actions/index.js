@@ -82,14 +82,16 @@ export function fetchDictentries() {
   return (dispatch, getState) => {
     const {
       term,
-      selectedSubjectFields
+      selectedSubjectFields,
+      page
     } = getState();
 
     browserHistory.push({
       pathname: '/',
       query: {
         term: term || undefined,
-        selectedSubjectFields: selectedSubjectFields || undefined
+        selectedSubjectFields: selectedSubjectFields || undefined,
+        page: (page > 1) ? page : undefined,
       },
     });
 
@@ -98,7 +100,8 @@ export function fetchDictentries() {
       dispatch(setLoading(true));
       search({
           term,
-          selectedSubjectFields
+          selectedSubjectFields,
+          page,
         })
         .fail(err => {
           // TODO: Create an alert with bootstrap alert: http://www.bootply.com/4FSUjc2qej
