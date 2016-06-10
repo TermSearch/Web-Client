@@ -27,7 +27,7 @@ export default ({
       data: {
         term: escapedTerm,
         limit: limit,
-        skip: skip,
+        skip: skip || 0,
         subjectFields: selectedSubjectFields,
         format: 'json'
       },
