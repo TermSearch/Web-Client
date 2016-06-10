@@ -60,7 +60,8 @@ class TermSearchView extends Component {
   fetchFromLocation({
     query: {
       term,
-      selectedSubjectFields
+      selectedSubjectFields,
+      page,
     }
   }) {
     const {dispatch} = this.props;
@@ -69,11 +70,12 @@ class TermSearchView extends Component {
       selectedSubjectFields = [selectedSubjectFields];
     dispatch(setSelectedSubjectFields(selectedSubjectFields));
     dispatch(setTerm(term));
-    this.handleSearch();
+    dispatch(setPage(page));
+    dispatch(fetchDictentries())
   }
 
   handleSearch() {
-    const {dispatch, term} = this.props;
+    const {dispatch} = this.props;
     dispatch(setPage(1));
     dispatch(fetchDictentries())
   }
