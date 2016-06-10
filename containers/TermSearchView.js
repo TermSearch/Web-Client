@@ -65,25 +65,27 @@ class TermSearchView extends Component {
     }
   }) {
     const {dispatch} = this.props;
+    const pageNr = parseInt(page, 10);
     // Convert selectedSubjectFields to array if string
     if (selectedSubjectFields && selectedSubjectFields.constructor === String)
       selectedSubjectFields = [selectedSubjectFields];
     dispatch(setSelectedSubjectFields(selectedSubjectFields));
     dispatch(setTerm(term));
-    dispatch(setPage(page));
+    dispatch(setPage(pageNr));
     dispatch(fetchDictentries())
   }
 
   handleSearch() {
     const {dispatch} = this.props;
     dispatch(setPage(1));
-    dispatch(fetchDictentries())
+    dispatch(fetchDictentries());
   }
 
   handleSubjectFieldToggle(subjectField) {
     const {dispatch} = this.props;
     dispatch(toggleSubjectField(subjectField));
-    this.handleSearch();
+    dispatch(setPage(1));
+    dispatch(fetchDictentries());
   }
 
   handleSetPage(pageNr) {

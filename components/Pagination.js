@@ -4,7 +4,7 @@ const propTypes = {};
 
 function Pagination({page, count, handleSetPage}) {
 
-  const numberOfPages = Math.round(count / 10);
+  const numberOfPages = Math.round(count / 20);
 
   function handlePreviousClick(e) {
     e.preventDefault();
@@ -18,13 +18,23 @@ function Pagination({page, count, handleSetPage}) {
       handleSetPage(page + 1);
     }
 
+  // Render empty nav if only one page
+  if (numberOfPages <= 1)
+    return (
+      <nav></nav>
+    );
+
   return (
     <nav>
       <ul className="pager">
-        <li className={ (page <= 1) ? 'previous disabled' : 'previous' }>
+        <li className={(page <= 1)
+          ? 'previous disabled'
+          : 'previous'}>
           <a href="#" onClick={handlePreviousClick}>Vorige</a>
         </li>
-        <li className={ (page >= numberOfPages) ? 'next disabled' : 'next' }>
+        <li className={(page >= numberOfPages)
+          ? 'next disabled'
+          : 'next'}>
           <a href="#" onClick={handleNextClick}>Volgende</a>
         </li>
       </ul>
