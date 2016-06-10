@@ -7,7 +7,7 @@ const pageLinks = (page, numberOfPages, handlePageClick) => {
   const pageLinks = [];
   for (let i = 1; i <= numberOfPages; i++) {
     pageLinks.push(
-      <li className={(i === page)
+      <li key={i} className={(i === page)
         ? 'active'
         : ''}>
         <a value={i} onClick={handlePageClick}>
