@@ -124,7 +124,7 @@ class TermSearchView extends Component {
             </div>
           </div>
           <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-8 text-center">
                 <Pagination page={page} count={count} handleSetPage={this.handleSetPage} />
               </div>
           </div>

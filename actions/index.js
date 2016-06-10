@@ -91,7 +91,7 @@ export function fetchDictentries() {
       query: {
         term: term || undefined,
         selectedSubjectFields: selectedSubjectFields || undefined,
-        page: (page > 1) ? page : undefined,
+        page: page,
       },
     });
 

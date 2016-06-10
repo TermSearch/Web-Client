@@ -2,6 +2,24 @@ import React, {PropTypes} from 'react';
 
 const propTypes = {};
 
+const pageLinks = (page, numberOfPages, handlePageClick) => {
+
+  const pageLinks = [];
+  for (let i = 1; i <= numberOfPages; i++) {
+    pageLinks.push(
+      <li className={(i === page)
+        ? 'active'
+        : ''}>
+        <a value={i} onClick={handlePageClick}>
+          {i}
+        </a>
+      </li>
+    )
+  }
+
+  return pageLinks;
+}
+
 function Pagination({page, count, handleSetPage}) {
 
   const numberOfPages = Math.round(count / 20);
@@ -18,6 +36,11 @@ function Pagination({page, count, handleSetPage}) {
       handleSetPage(page + 1);
     }
 
+  function handlePageClick(e) {
+    e.preventDefault();
+    handleSetPage(e.target.value);
+  }
+
   // Render empty nav if only one page
   if (numberOfPages <= 1)
     return (
@@ -25,18 +48,27 @@ function Pagination({page, count, handleSetPage}) {
     );
 
   return (
-    <nav>
-      <ul className="pager">
+    <nav id="pager">
+      <ul className="pagination">
+
         <li className={(page <= 1)
-          ? 'previous disabled'
-          : 'previous'}>
-          <a href="#" onClick={handlePreviousClick}>Vorige</a>
+          ? 'disabled'
+          : ''}>
+          <a aria-label="Vorige" id='prev' onClick={handlePreviousClick}>
+            <span aria-hidden="true">&laquo;</span>
+          </a>
         </li>
+
+        {pageLinks(page, numberOfPages, handlePageClick)}
+
         <li className={(page >= numberOfPages)
-          ? 'next disabled'
-          : 'next'}>
-          <a href="#" onClick={handleNextClick}>Volgende</a>
+          ? 'disabled'
+          : ''}>
+          <a aria-label="Volgende" id='next' onClick={handleNextClick}>
+            <span aria-hidden="true">&raquo;</span>
+          </a>
         </li>
+
       </ul>
     </nav>
   );
