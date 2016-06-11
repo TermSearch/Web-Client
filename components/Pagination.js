@@ -4,8 +4,23 @@ const propTypes = {};
 
 const pageLinks = (page, numberOfPages, handlePageClick) => {
 
+  const maxPages = 10;
+
+  let firstPage = (numberOfPages > maxPages && page > maxPages)
+    ? page - Math.round(maxPages / 2)
+    : 1;
+  let lastPage = (numberOfPages > maxPages)
+    ? page + Math.round(maxPages / 2)
+    : numberOfPages;
+
+  if (numberOfPages >= maxPages && page <= maxPages) {
+    firstPage = 1;
+    lastPage = maxPages;
+  }
+
   const pageLinks = [];
-  for (let i = 1; i <= numberOfPages; i++) {
+
+  for (let i = firstPage; i <= lastPage; i++) {
     pageLinks.push(
       <li key={i} className={(i === page)
         ? 'active'
@@ -49,7 +64,7 @@ function Pagination({page, count, handleSetPage}) {
 
   return (
     <nav id="pager">
-      <ul className="pagination">
+      <ul className="pagination pagination-sm">
 
         <li className={(page <= 1)
           ? 'disabled'
