@@ -10,7 +10,7 @@ const pageLinks = (page, numberOfPages, handlePageClick) => {
     ? page - Math.round(maxPages / 2)
     : 1;
   let lastPage = (numberOfPages > maxPages)
-    ? page + Math.round(maxPages / 2)
+    ? firstPage + maxPages
     : numberOfPages;
 
   if (numberOfPages >= maxPages && page <= maxPages) {
