@@ -179,9 +179,9 @@ ul.term-list li:hover {
   z-index: 10;
   /* raises anchor tag above everything else in div */
   background-color: $document_background_color;
-  /*workaround to make clickable in IE */
+  /*workaround to make clickable in IE
   opacity: 0;
-  /*workaround to make clickable in IE */
+  /*workaround to make clickable in IE
   filter: alpha(opacity=0);
   /*workaround to make clickable in IE */
 }
